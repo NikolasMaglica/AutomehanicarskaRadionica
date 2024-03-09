@@ -37,4 +37,8 @@
     <ProjectReference Include="..\Vjezba.Services\Vjezba.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\data\" />
+  </ItemGroup>
+
 </Project>

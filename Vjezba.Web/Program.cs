@@ -25,6 +25,8 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IOfferService, OfferService>();
 builder.Services.AddScoped<IManufacturerService, ManufacturerService>();
 builder.Services.AddScoped<IServiceService,ServiceService>();
+builder.Services.AddScoped<IMaterialService, MaterialService>();
+
 builder.Services.AddScoped<ClaimsPrincipal>(provider => provider.GetService<IHttpContextAccessor>().HttpContext.User);
 
 builder.Services.AddDbContext<ClientManagerDbContext>(options =>

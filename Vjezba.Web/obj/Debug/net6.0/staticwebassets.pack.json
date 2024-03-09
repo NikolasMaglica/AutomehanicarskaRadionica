@@ -9,14 +9,6 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\Users\\Nikolas\\Downloads\\mvc-2021-22-vjezba-05\\mvc-2021-22-vjezba-05-setup\\Vjezba\\Vjezba.Web\\wwwroot\\data\\cities.xml",
-      "PackagePath": "staticwebassets\\data\\cities.xml"
-    },
-    {
-      "Id": "C:\\Users\\Nikolas\\Downloads\\mvc-2021-22-vjezba-05\\mvc-2021-22-vjezba-05-setup\\Vjezba\\Vjezba.Web\\wwwroot\\data\\clients.xml",
-      "PackagePath": "staticwebassets\\data\\clients.xml"
-    },
-    {
       "Id": "C:\\Users\\Nikolas\\Downloads\\mvc-2021-22-vjezba-05\\mvc-2021-22-vjezba-05-setup\\Vjezba\\Vjezba.Web\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },

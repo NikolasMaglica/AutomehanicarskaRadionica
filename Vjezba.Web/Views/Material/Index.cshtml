@@ -1,0 +1,78 @@
+﻿@model List<Material>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    .action-buttons {
+        text-align: right;
+    }
+</style>
+<h1>Popis materijala</h1>
+
+<div>
+    <a asp-action="Create" class="btn btn-success">Kreiraj novi</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Naziv materijala
+            </th>
+            <th>
+                Stanje na lageru               
+            </th>
+            <th>
+                Cijena
+            </th>
+            <th>
+                Opis
+            </th>
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (@item.IsActive == true && item.IsDeleted == false)
+            {
+                <tr>
+                    <td>
+                        @item.MaterialName
+                    </td>
+                    <td>
+                        @item.InStockQuantity
+                    </td>
+                    <td>
+                        @item.MaterialPrice
+                    </td>
+                    <td>
+                        @item.MaterialDescription
+                    </td>
+                    <td class="action-buttons d-flex flex-row">
+
+                        <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-info ml-1">Uredi</a>
+                        <form asp-action="Delete" method="post" onsubmit="return confirm('Jeste li sigurni da želite obrisati materijal?');">
+                            <input type="hidden" name="id" value="@item.ID" />
+                            <button type="submit" class="btn btn-danger ml-1">Izbriši</button>
+                        </form>
+
+
+
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger" role="alert">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p strong>@error.ErrorMessage</p>
+        }
+    </div>
+}
+

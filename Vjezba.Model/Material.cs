@@ -14,11 +14,9 @@ namespace Vjezba.Model
         [StringLength(40)]
         public string MaterialName { get; set; } = String.Empty;
         [Required(ErrorMessage = "Unos količine na lageru je obavezan.")]
-        [MaxLength(10)]
 
         public int InStockQuantity { get; set; }
         [Required(ErrorMessage = "Unos cijene je obavezan.")]
-        [MaxLength(10)]
         public decimal MaterialPrice { get; set; }
         [StringLength(200)]
 

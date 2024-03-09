@@ -35,12 +35,10 @@ namespace Vjezba.Web.Controllers
 			listItem.Value = "";
 			selectItems.Add(listItem);
 
-			// Materijaliziraj rezultate upita korištenjem ToList()
 			var vehicles = this._dbContext.Vehicles.Where(m=>m.IsActive==true).ToList();
 
 			foreach (var category in vehicles)
 			{
-				// Ovdje možete izravno koristiti varijablu 'category' umjesto ponovnog upita
 				var manufacturerName = this._dbContext.Manufacturers
 					.Where(m => m.ID == category.ManufacturerID)
 					.Select(m => m.Name)
@@ -54,7 +52,6 @@ namespace Vjezba.Web.Controllers
 				}
 			}
 
-			// Postavite ViewBag izvan petlje
 			ViewBag.PossibleVehicles = selectItems;		
 		}
       

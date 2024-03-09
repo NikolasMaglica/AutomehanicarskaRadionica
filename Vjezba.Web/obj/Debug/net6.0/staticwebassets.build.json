@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pzCC2c4z6GyXTrs+tRVpQGJHUvEshNe2OQk4nMLWSyI=",
+  "Hash": "DOf/4l+DMVdzaj/4xcNfRHyh8DcA4sOTq+q1yPLZfGM=",
   "Source": "Vjezba.Web",
   "BasePath": "_content/Vjezba.Web",
   "Mode": "Default",
@@ -1086,40 +1086,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
-    },
-    {
-      "Identity": "C:\\Users\\Nikolas\\Downloads\\mvc-2021-22-vjezba-05\\mvc-2021-22-vjezba-05-setup\\Vjezba\\Vjezba.Web\\wwwroot\\data\\cities.xml",
-      "SourceId": "Vjezba.Web",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Nikolas\\Downloads\\mvc-2021-22-vjezba-05\\mvc-2021-22-vjezba-05-setup\\Vjezba\\Vjezba.Web\\wwwroot\\",
-      "BasePath": "_content/Vjezba.Web",
-      "RelativePath": "data/cities.xml",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\data\\cities.xml"
-    },
-    {
-      "Identity": "C:\\Users\\Nikolas\\Downloads\\mvc-2021-22-vjezba-05\\mvc-2021-22-vjezba-05-setup\\Vjezba\\Vjezba.Web\\wwwroot\\data\\clients.xml",
-      "SourceId": "Vjezba.Web",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Nikolas\\Downloads\\mvc-2021-22-vjezba-05\\mvc-2021-22-vjezba-05-setup\\Vjezba\\Vjezba.Web\\wwwroot\\",
-      "BasePath": "_content/Vjezba.Web",
-      "RelativePath": "data/clients.xml",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\data\\clients.xml"
     },
     {
       "Identity": "C:\\Users\\Nikolas\\Downloads\\mvc-2021-22-vjezba-05\\mvc-2021-22-vjezba-05-setup\\Vjezba\\Vjezba.Web\\wwwroot\\favicon.ico",
