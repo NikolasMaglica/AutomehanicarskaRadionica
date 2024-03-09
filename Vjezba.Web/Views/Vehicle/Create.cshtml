@@ -1,0 +1,29 @@
+﻿@model Vjezba.Model.Client
+
+@{
+	ViewData["Title"] = "Dodavanje novog vozila";
+}
+
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a asp-action="Index">Popis vozila</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Novo vozilo</li>
+	</ol>
+</nav>
+
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="Create">
+			<partial name="_CreateOrEdit" />
+		</form>
+	</div>
+</div>
+   @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <p strong>@error.ErrorMessage</p>
+                    }
+                </div>
+            }

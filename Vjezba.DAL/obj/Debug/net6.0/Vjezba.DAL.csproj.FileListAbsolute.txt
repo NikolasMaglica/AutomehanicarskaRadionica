@@ -1,0 +1,34 @@
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\bin\Debug\net6.0\Vjezba.DAL.deps.json
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\bin\Debug\net6.0\Vjezba.DAL.runtimeconfig.json
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\bin\Debug\net6.0\Vjezba.DAL.dll
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\bin\Debug\net6.0\Vjezba.DAL.pdb
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\bin\Debug\net6.0\Vjezba.Model.dll
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\bin\Debug\net6.0\Vjezba.Model.pdb
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\Vjezba.DAL.csproj.AssemblyReference.cache
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\Vjezba.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\Vjezba.DAL.AssemblyInfoInputs.cache
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\Vjezba.DAL.AssemblyInfo.cs
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\Vjezba.DAL.csproj.CoreCompileInputs.cache
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\Vjezba.DAL.csproj.CopyComplete
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\Vjezba.DAL.dll
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\refint\Vjezba.DAL.dll
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\Vjezba.DAL.pdb
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\Vjezba.DAL.genruntimeconfig.cache
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\ref\Vjezba.DAL.dll
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\bin\Debug\net6.0\Vjezba.DAL.deps.json
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\bin\Debug\net6.0\Vjezba.DAL.runtimeconfig.json
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\bin\Debug\net6.0\Vjezba.DAL.dll
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\bin\Debug\net6.0\Vjezba.DAL.pdb
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\bin\Debug\net6.0\Vjezba.Model.dll
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\bin\Debug\net6.0\Vjezba.Model.pdb
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\Vjezba.DAL.csproj.AssemblyReference.cache
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\Vjezba.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\Vjezba.DAL.AssemblyInfoInputs.cache
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\Vjezba.DAL.AssemblyInfo.cs
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\Vjezba.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\Vjezba.DAL.csproj.CopyComplete
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\Vjezba.DAL.dll
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\refint\Vjezba.DAL.dll
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\Vjezba.DAL.pdb
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\Vjezba.DAL.genruntimeconfig.cache
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.DAL\obj\Debug\net6.0\ref\Vjezba.DAL.dll

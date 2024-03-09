@@ -1,0 +1,209 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Vjezba.Web
+build_property.RootNamespace = Vjezba.Web
+build_property.ProjectDir = C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Web\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
+build_property.MSBuildProjectDirectory = C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Web
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX01hbmFnZU5hdi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Areas/Identity/Pages/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Areas/Identity/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Areas/Identity/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Client/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Client/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Client/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Client/_CreateOrEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XF9DcmVhdGVPckVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Client/_IndexTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XF9JbmRleFRhYmxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Home/Contact.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Home/ContactSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0U3VjY2Vzcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Home/FAQ.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGQVEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Manufacturer/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFudWZhY3R1cmVyXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Manufacturer/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFudWZhY3R1cmVyXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Manufacturer/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFudWZhY3R1cmVyXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Manufacturer/_CreateOrEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFudWZhY3R1cmVyXF9DcmVhdGVPckVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Offer/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Offer/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Order/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Order/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Order/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Order/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Service/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Service/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Service/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Service/_CreateOrEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZVxfQ3JlYXRlT3JFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/UserVehicle/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclZlaGljbGVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/UserVehicle/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclZlaGljbGVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/UserVehicle/_CreateOrEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclZlaGljbGVcX0NyZWF0ZU9yRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/UserVehicle/_IndexTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclZlaGljbGVcX0luZGV4VGFibGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Vehicle/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Vehicle/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Vehicle/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Vehicle/_CreateOrEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZVxfQ3JlYXRlT3JFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Vehicle/_DeleteModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZVxfRGVsZXRlTW9kYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Vehicle/_IndexTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZVxfSW5kZXhUYWJsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Vehicle/_VehicleFilter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVoaWNsZVxfVmVoaWNsZUZpbHRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-8nqs6jpbvs

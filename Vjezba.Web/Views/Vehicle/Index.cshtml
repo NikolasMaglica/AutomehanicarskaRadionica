@@ -1,0 +1,54 @@
+﻿@model List<Vehicle>
+
+@{
+	ViewData["Title"] = "Vozila";
+}
+
+<h1>Popis vozila</h1>
+<div style="margin-top: 20px; margin-bottom: 10px;">
+	<partial name="_VehicleFilter" model="new VehicleFilterModel()" />
+</div>
+<div id="tableContainer">
+	<partial name="_IndexTable" model="new List<Vehicle>()" />
+</div>
+@if (!ViewData.ModelState.IsValid)
+{
+	<div class="alert alert-danger" role="alert">
+		@foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+		{
+			<p strong>@error.ErrorMessage</p>
+		}
+	</div>
+}
+@section scripts{
+	<script>
+
+		$(document).ready(filterVehicles());
+
+		function filterVehicles(){
+			var formData = $("#vehicleForm").serialize();
+			console.log("funkcija");
+			$.ajax({
+				url: "@Url.Action("IndexAjax", new VehicleFilterModel())",
+				method: "POST",
+				data: formData,
+				success: function (html) {
+					$("#tableContainer").html(html);
+				}
+			});
+		}
+	</script>
+	<script>
+   function deleteV(imgId){
+		$.ajax({
+			url: '/vehicle/delete/' + imgId,
+			method:"DELETE",
+				success: function (html) {
+					$("#tableContainer").html(html);
+				}
+
+		});
+		}
+	</script>
+
+}

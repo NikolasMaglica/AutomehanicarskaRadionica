@@ -1,0 +1,61 @@
+﻿@model Vjezba.Model.Client
+
+@{
+	ViewData["Title"] = "Uređivanje klijenta";
+}
+
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a asp-action="Index">Popis klijenata</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Uređivanje klijenta</li>
+	</ol>
+</nav>
+
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="Edit">
+			<input type="hidden" asp-for="ID" />
+			<partial name="_CreateOrEdit" />
+		</form>
+	</div>
+	<div class="col-md-6">
+        <label class="control-label">Photo</label>
+        <form id="profilePhotoDz" asp-controller="Client" asp-action="UploadAttachment" asp-route-clientId="@Model.ID" enctype="multipart/form-data" class="dropzone">
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts{
+<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
+<script type="text/javascript">
+    Dropzone.options.profilePhotoDz = { success: function (file, response) { console.log({ file, response }); } };
+</script>
+<script>
+
+    $(document).ready(function(){
+        $.ajax({
+            url: "@Url.Action("GetAttachments", new {id = Model.ID})",
+            method:"GET",
+            success:function(html){
+                console.log(html);
+                $("#attachments-container").html(html);
+            }
+        })
+    })
+</script>
+<script>
+
+    function deleteImg(imgId){
+        $.ajax({
+            url: '/client/deleteAttachment/-99'.replace('-99', imgId),
+            method:"DELETE"
+            
+        });
+        }
+    
+</script>
+}

@@ -1,0 +1,37 @@
+﻿@model List<Vehicle>
+
+<table style="margin-top: 20px;" class="table table-condensed">
+	<thead>
+		<tr>
+			<th>Redni broj</th>
+			<th>Model</th>
+			<th>Godina proizvodnje</th>
+			<th>Proizvođač</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			if (@item.IsActive == true && item.IsDeleted==false)
+			{
+				<tr>
+					<td>@item.ID</td>
+					<td>@item.ModelName</td>
+					<td>@item.ModelYear</td>
+					<td>@item.Manufacturer?.Name</td>
+					<td>
+						<a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-sm btn-info">Uredi</a>
+					</td>
+					<td>
+						<form asp-controller="Vehicle" asp-action="Delete" method="post" onsubmit="return confirm('Jeste li sigurni da želite obrisati vozilo?');">
+							<input type="hidden" name="id" value="@item.ID" />
+							<button type="submit" class="btn btn-sm btn-danger ml-1">Izbriši</button>
+						</form>
+					</td>
+				</tr>
+			}
+		}
+	</tbody>
+
+</table>

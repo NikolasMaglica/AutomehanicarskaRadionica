@@ -1,0 +1,19 @@
+﻿@using Vjezba.Model
+
+@model VehicleFilterModel
+
+<form action="@Url.Action("Index")" id="vehicleForm" method="post">
+	<div class="row">
+		<div class="col">
+			<input asp-for="ModelYear" class="form-control" type="number" placeholder="Godina proizvodnje" />
+		</div>
+		<div class="col">
+			<input asp-for="ModelName" class="form-control" type="text" placeholder="Model" />
+		</div>
+		
+		<div class="col">
+			<button type="button" id="buttonClick" onclick="filterVehicles()" class="btn btn-outline-info">Pretraga</button>
+			<a asp-action="Create" class="btn btn-success">Novi</a>
+		</div>
+	</div>
+</form>

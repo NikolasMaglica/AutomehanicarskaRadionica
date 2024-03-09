@@ -1,0 +1,24 @@
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\bin\Debug\net6.0\Vjezba.Model.deps.json
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\bin\Debug\net6.0\Vjezba.Model.dll
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\bin\Debug\net6.0\Vjezba.Model.pdb
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\obj\Debug\net6.0\Vjezba.Model.csproj.AssemblyReference.cache
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\obj\Debug\net6.0\Vjezba.Model.GeneratedMSBuildEditorConfig.editorconfig
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\obj\Debug\net6.0\Vjezba.Model.AssemblyInfoInputs.cache
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\obj\Debug\net6.0\Vjezba.Model.AssemblyInfo.cs
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\obj\Debug\net6.0\Vjezba.Model.csproj.CoreCompileInputs.cache
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\obj\Debug\net6.0\Vjezba.Model.dll
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\obj\Debug\net6.0\refint\Vjezba.Model.dll
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\obj\Debug\net6.0\Vjezba.Model.pdb
+D:\ASP.NET MVC\Vjezbe\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\obj\Debug\net6.0\ref\Vjezba.Model.dll
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\bin\Debug\net6.0\Vjezba.Model.deps.json
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\bin\Debug\net6.0\Vjezba.Model.dll
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\bin\Debug\net6.0\Vjezba.Model.pdb
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\obj\Debug\net6.0\Vjezba.Model.csproj.AssemblyReference.cache
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\obj\Debug\net6.0\Vjezba.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\obj\Debug\net6.0\Vjezba.Model.AssemblyInfoInputs.cache
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\obj\Debug\net6.0\Vjezba.Model.AssemblyInfo.cs
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\obj\Debug\net6.0\Vjezba.Model.csproj.CoreCompileInputs.cache
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\obj\Debug\net6.0\Vjezba.Model.dll
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\obj\Debug\net6.0\refint\Vjezba.Model.dll
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\obj\Debug\net6.0\Vjezba.Model.pdb
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Model\obj\Debug\net6.0\ref\Vjezba.Model.dll

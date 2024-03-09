@@ -1,0 +1,29 @@
+﻿@model Vjezba.Model.UserVehicle
+
+<div class="form-group">
+	<label class="control-label">Vozilo</label>
+	<select asp-for="VehicleID" asp-items="ViewBag.PossibleVehicles" class="form-control"></select>
+	<span asp-validation-for="VehicleID" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+	<label class="control-label">Zaposlenik</label>
+	<select asp-for="UserId" asp-items="ViewBag.Users" class="form-control"></select>
+	<span asp-validation-for="UserId" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+	<label class="control-label">Broj prijeđenih kilometara</label>
+	<input asp-for="KilometersTraveled" class="form-control" />
+	<span asp-validation-for="KilometersTraveled" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+	<label class="control-label">Opis</label>
+	<input asp-for="Description" class="form-control" />
+	<span asp-validation-for="Description" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+	<input type="submit" value="Spremi" class="btn btn-outline-success" />
+</div>

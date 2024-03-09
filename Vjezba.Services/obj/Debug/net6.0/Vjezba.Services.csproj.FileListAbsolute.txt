@@ -1,0 +1,17 @@
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Services\bin\Debug\net6.0\Vjezba.Services.deps.json
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Services\bin\Debug\net6.0\Vjezba.Services.dll
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Services\bin\Debug\net6.0\Vjezba.Services.pdb
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Services\bin\Debug\net6.0\Vjezba.DAL.dll
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Services\bin\Debug\net6.0\Vjezba.Model.dll
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Services\bin\Debug\net6.0\Vjezba.DAL.pdb
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Services\bin\Debug\net6.0\Vjezba.Model.pdb
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Services\obj\Debug\net6.0\Vjezba.Services.csproj.AssemblyReference.cache
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Services\obj\Debug\net6.0\Vjezba.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Services\obj\Debug\net6.0\Vjezba.Services.AssemblyInfoInputs.cache
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Services\obj\Debug\net6.0\Vjezba.Services.AssemblyInfo.cs
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Services\obj\Debug\net6.0\Vjezba.Services.csproj.CoreCompileInputs.cache
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Services\obj\Debug\net6.0\Vjezba.Services.csproj.CopyComplete
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Services\obj\Debug\net6.0\Vjezba.Services.dll
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Services\obj\Debug\net6.0\refint\Vjezba.Services.dll
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Services\obj\Debug\net6.0\Vjezba.Services.pdb
+C:\Users\Nikolas\Downloads\mvc-2021-22-vjezba-05\mvc-2021-22-vjezba-05-setup\Vjezba\Vjezba.Services\obj\Debug\net6.0\ref\Vjezba.Services.dll
