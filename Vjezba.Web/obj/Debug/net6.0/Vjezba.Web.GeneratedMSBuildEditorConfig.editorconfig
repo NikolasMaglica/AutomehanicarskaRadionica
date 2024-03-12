@@ -120,6 +120,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Offer/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Offer/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Offer/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -172,16 +180,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclZlaGljbGVcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/UserVehicle/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclZlaGljbGVcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/UserVehicle/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclZlaGljbGVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/UserVehicle/_CreateOrEdit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclZlaGljbGVcX0NyZWF0ZU9yRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/UserVehicle/_IndexTable.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclZlaGljbGVcX0luZGV4VGFibGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Nikolas/Downloads/mvc-2021-22-vjezba-05/mvc-2021-22-vjezba-05-setup/Vjezba/Vjezba.Web/Views/Vehicle/Create.cshtml]

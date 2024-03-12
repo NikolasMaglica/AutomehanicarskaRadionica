@@ -12,17 +12,24 @@ namespace Vjezba.Model
         [Key]
         public int ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Unos imena je obavezan")]
+
         [MinLength(3, ErrorMessage = "Unesite barem 3 znaka")]
-        public string FirstName { get; set; } = "";
+        public string FirstName { get; set; }
+        [Required(ErrorMessage = "Unos prezimena je obavezan")]
 
-        [Required]
-        public string LastName { get; set; } = "";
+        [MinLength(3, ErrorMessage = "Unesite barem 3 znaka")]
+        public string LastName { get; set; }
 
-        [Required]
-        public string Email { get; set; } = "";
-
+        [Required(ErrorMessage = "Unos emaila je obavezan")]
+        [EmailAddress(ErrorMessage = "Unesite ispravan e-mail format")]
+        public string Email { get; set; }
+        [Required(ErrorMessage = "Unos adrese je obavezan")]
+        [StringLength(40)]
         public string? Address { get; set; }
+        [Required(ErrorMessage = "Unos broja telefona je obavezan")]
+
+        [Phone(ErrorMessage = "Unesite ispravan broj telefona")]
         public string? PhoneNumber { get; set; }
 
         public string FullName => $"{FirstName} {LastName}";

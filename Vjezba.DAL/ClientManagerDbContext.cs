@@ -54,9 +54,7 @@ namespace Vjezba.DAL
 
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<City>().HasData(new City { ID = 1, Name = "Zagreb" });
-            modelBuilder.Entity<City>().HasData(new City { ID = 2, Name = "Velika Gorica" });
-            modelBuilder.Entity<City>().HasData(new City { ID = 3, Name = "Vrbovsko" });
+         
         }
 
     }

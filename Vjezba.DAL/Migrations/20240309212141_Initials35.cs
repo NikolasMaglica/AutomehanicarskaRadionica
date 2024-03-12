@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Vjezba.DAL.Migrations
 {
-    public partial class Initials20 : Migration
+    public partial class Initials35 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -72,10 +72,16 @@ namespace Vjezba.DAL.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UpdatedById = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeletedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeleteTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -88,7 +94,15 @@ namespace Vjezba.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    CreatedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeletedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeleteTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -102,9 +116,17 @@ namespace Vjezba.DAL.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MaterialName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
-                    InStockQuantity = table.Column<int>(type: "int", maxLength: 10, nullable: false),
-                    MaterialPrice = table.Column<decimal>(type: "decimal(18,2)", maxLength: 10, nullable: false),
-                    MaterialDescription = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
+                    InStockQuantity = table.Column<int>(type: "int", nullable: false),
+                    MaterialPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    MaterialDescription = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    CreatedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeletedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeleteTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -145,7 +167,15 @@ namespace Vjezba.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ServiceName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     ServicePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ServiceDescription = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
+                    ServiceDescription = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    CreatedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeletedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeleteTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -264,9 +294,9 @@ namespace Vjezba.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ModelName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ModelName = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     ModelYear = table.Column<int>(type: "int", nullable: false),
-                    ManufacturerID = table.Column<int>(type: "int", nullable: true),
+                    ManufacturerID = table.Column<int>(type: "int", nullable: false),
                     CreatedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -283,7 +313,8 @@ namespace Vjezba.DAL.Migrations
                         name: "FK_Vehicles_Manufacturers_ManufacturerID",
                         column: x => x.ManufacturerID,
                         principalTable: "Manufacturers",
-                        principalColumn: "ID");
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -322,14 +353,17 @@ namespace Vjezba.DAL.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     KilometersTraveled = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    VehicleID = table.Column<int>(type: "int", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    VehicleID = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    DeletedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeleteTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -338,12 +372,14 @@ namespace Vjezba.DAL.Migrations
                         name: "FK_UserVehicles_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UserVehicles_Vehicles_VehicleID",
                         column: x => x.VehicleID,
                         principalTable: "Vehicles",
-                        principalColumn: "ID");
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -379,35 +415,46 @@ namespace Vjezba.DAL.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AppUsersId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    ClientId = table.Column<int>(type: "int", nullable: true),
-                    UserVehicleId = table.Column<int>(type: "int", nullable: true),
-                    OfferStatusId = table.Column<int>(type: "int", nullable: true)
+                    ClientId = table.Column<int>(type: "int", nullable: false),
+                    UserVehicleId = table.Column<int>(type: "int", nullable: false),
+                    OfferStatusId = table.Column<int>(type: "int", nullable: false),
+                    UsersId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeletedById = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeleteTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Offers", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Offers_AspNetUsers_AppUsersId",
-                        column: x => x.AppUsersId,
+                        name: "FK_Offers_AspNetUsers_UsersId",
+                        column: x => x.UsersId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Offers_Clients_ClientId",
                         column: x => x.ClientId,
                         principalTable: "Clients",
-                        principalColumn: "ID");
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Offers_OfferStatuses_OfferStatusId",
                         column: x => x.OfferStatusId,
                         principalTable: "OfferStatuses",
-                        principalColumn: "ID");
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Offers_UserVehicles_UserVehicleId",
                         column: x => x.UserVehicleId,
                         principalTable: "UserVehicles",
-                        principalColumn: "ID");
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -418,7 +465,7 @@ namespace Vjezba.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     OfferId = table.Column<int>(type: "int", nullable: true),
-                    MaterialId = table.Column<int>(type: "int", nullable: true)
+                    MaterialId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -427,7 +474,8 @@ namespace Vjezba.DAL.Migrations
                         name: "FK_MaterialOffers_Materials_MaterialId",
                         column: x => x.MaterialId,
                         principalTable: "Materials",
-                        principalColumn: "ID");
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_MaterialOffers_Offers_OfferId",
                         column: x => x.OfferId,
@@ -442,8 +490,8 @@ namespace Vjezba.DAL.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    ServiceId = table.Column<int>(type: "int", nullable: true),
-                    OfferId = table.Column<int>(type: "int", nullable: true)
+                    ServiceId = table.Column<int>(type: "int", nullable: false),
+                    OfferId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -452,12 +500,14 @@ namespace Vjezba.DAL.Migrations
                         name: "FK_ServiceOffers_Offers_OfferId",
                         column: x => x.OfferId,
                         principalTable: "Offers",
-                        principalColumn: "ID");
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ServiceOffers_Services_ServiceId",
                         column: x => x.ServiceId,
                         principalTable: "Services",
-                        principalColumn: "ID");
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -525,11 +575,6 @@ namespace Vjezba.DAL.Migrations
                 column: "OfferId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Offers_AppUsersId",
-                table: "Offers",
-                column: "AppUsersId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Offers_ClientId",
                 table: "Offers",
                 column: "ClientId");
@@ -538,6 +583,11 @@ namespace Vjezba.DAL.Migrations
                 name: "IX_Offers_OfferStatusId",
                 table: "Offers",
                 column: "OfferStatusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Offers_UsersId",
+                table: "Offers",
+                column: "UsersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Offers_UserVehicleId",

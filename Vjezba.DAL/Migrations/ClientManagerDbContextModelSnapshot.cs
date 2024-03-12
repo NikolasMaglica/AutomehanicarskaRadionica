@@ -228,40 +228,6 @@ namespace Vjezba.DAL.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Vjezba.Model.City", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("City");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Name = "Zagreb"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Name = "Velika Gorica"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            Name = "Vrbovsko"
-                        });
-                });
-
             modelBuilder.Entity("Vjezba.Model.Client", b =>
                 {
                     b.Property<int>("ID")
@@ -271,7 +237,9 @@ namespace Vjezba.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime2");
@@ -304,6 +272,7 @@ namespace Vjezba.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdateTime")
@@ -345,7 +314,8 @@ namespace Vjezba.DAL.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<DateTime>("UpdateTime")
                         .HasColumnType("datetime2");
@@ -388,7 +358,6 @@ namespace Vjezba.DAL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("MaterialDescription")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -420,6 +389,7 @@ namespace Vjezba.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<int?>("MaterialId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int?>("OfferId")
@@ -446,6 +416,7 @@ namespace Vjezba.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<int?>("ClientId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateTime")
@@ -467,6 +438,7 @@ namespace Vjezba.DAL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<int?>("OfferStatusId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalPrice")
@@ -479,9 +451,11 @@ namespace Vjezba.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("UserVehicleId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("UsersId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ID");
@@ -635,7 +609,6 @@ namespace Vjezba.DAL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("ServiceDescription")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -673,6 +646,7 @@ namespace Vjezba.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("ServiceId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -698,11 +672,20 @@ namespace Vjezba.DAL.Migrations
                     b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
+                    b.Property<DateTime>("DeleteTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedById")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Description")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<int>("KilometersTraveled")
@@ -715,9 +698,11 @@ namespace Vjezba.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int?>("VehicleID")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -756,11 +741,13 @@ namespace Vjezba.DAL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<int?>("ManufacturerID")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("ModelName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<int>("ModelYear")
                         .HasColumnType("int");
@@ -833,7 +820,9 @@ namespace Vjezba.DAL.Migrations
                 {
                     b.HasOne("Vjezba.Model.Material", "Materials")
                         .WithMany("MaterialOffers")
-                        .HasForeignKey("MaterialId");
+                        .HasForeignKey("MaterialId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Vjezba.Model.Offer", "Offers")
                         .WithMany("MaterialOffers")
@@ -848,19 +837,27 @@ namespace Vjezba.DAL.Migrations
                 {
                     b.HasOne("Vjezba.Model.Client", "Clients")
                         .WithMany("Offers")
-                        .HasForeignKey("ClientId");
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Vjezba.Model.OfferStatus", "OfferStatuses")
                         .WithMany("Offers")
-                        .HasForeignKey("OfferStatusId");
+                        .HasForeignKey("OfferStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Vjezba.Model.UserVehicle", "UserVehicles")
                         .WithMany("Offers")
-                        .HasForeignKey("UserVehicleId");
+                        .HasForeignKey("UserVehicleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Vjezba.Model.AppUser", "AppUser")
                         .WithMany("Offers")
-                        .HasForeignKey("UsersId");
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("AppUser");
 
@@ -907,7 +904,9 @@ namespace Vjezba.DAL.Migrations
 
                     b.HasOne("Vjezba.Model.Service", "Services")
                         .WithMany("ServiceOffers")
-                        .HasForeignKey("ServiceId");
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Offers");
 
@@ -918,11 +917,15 @@ namespace Vjezba.DAL.Migrations
                 {
                     b.HasOne("Vjezba.Model.AppUser", "AppUser")
                         .WithMany("UserVehicles")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Vjezba.Model.Vehicle", "Vehicle")
                         .WithMany("UserVehicles")
-                        .HasForeignKey("VehicleID");
+                        .HasForeignKey("VehicleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("AppUser");
 
@@ -933,7 +936,9 @@ namespace Vjezba.DAL.Migrations
                 {
                     b.HasOne("Vjezba.Model.Manufacturer", "Manufacturer")
                         .WithMany("Vehicles")
-                        .HasForeignKey("ManufacturerID");
+                        .HasForeignKey("ManufacturerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Manufacturer");
                 });

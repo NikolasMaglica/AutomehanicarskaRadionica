@@ -7,25 +7,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Vjezba.Model
 {
-    public class Vehicle
+    public class Vehicle:BaseEntity
     {
         public int ID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Unos modela vozila je obavezan")]
+        [StringLength(40, ErrorMessage = "Maksimalno možete unijeti 40 znakova.")]
         public string ModelName { get; set; }
+        [Required(ErrorMessage = "Unos godine modela je obavezan")]
+        [RegularExpression(@"^\d{4}$", ErrorMessage = "Unesite točno četiri znamenke.")]
+        [Range(1970, 2024, ErrorMessage = "Unesite godinu između 1970 i trenutne godine.")]
+
         public int ModelYear { get; set; }
+
         [ForeignKey(nameof(Manufacturer))]
+        [Required(ErrorMessage = "Unos proizvođača vozila je obavezan")]
+
         public int? ManufacturerID { get; set; }
         public Manufacturer? Manufacturer { get; set; }
         public virtual ICollection<UserVehicle>? UserVehicles { get; set; }
-
-        public string? CreatedById { get; set; }
-        public DateTime CreateTime { get; set; }
-
-        public string? UpdatedById { get; set; }
-        public DateTime UpdateTime { get; set; }
-        public string? DeletedById { get; set; }
-        public DateTime DeleteTime { get; set; }
-        public bool IsActive { get; set; } = true;
-        public bool IsDeleted { get; set; }= false;
     }
 }

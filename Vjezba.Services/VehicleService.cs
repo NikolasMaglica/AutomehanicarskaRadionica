@@ -8,10 +8,10 @@ namespace Vjezba.Services
 {
     public interface IVehicleService
     {
-        (bool Success, string ErrorMessage) CreateVehicle(Vehicle model, string createdById);
+        Task<(bool Success, string ErrorMessage)> CreateVehicleAsync(Vehicle model, string createdById);
         (List<Vehicle> Vehicles, bool Success, string ErrorMessage) GetFilteredVehicles(VehicleFilterModel filter);
-        (bool Success, string ErrorMessage) DeleteVehicle(int id, ClaimsPrincipal user);
-        (bool Success, string ErrorMessage) EditVehicle(int id, ClaimsPrincipal user);
+        Task<(bool Success, string ErrorMessage)> DeleteVehicleAsync(int id, ClaimsPrincipal user);
+        Task<(bool Success, string ErrorMessage)> EditVehicleAsync(int id, ClaimsPrincipal user);
 
     }
     public class VehicleService : IVehicleService
@@ -29,22 +29,17 @@ namespace Vjezba.Services
 
         }
 
-        public (bool Success, string ErrorMessage) CreateVehicle(Vehicle model, string createdById)
+        public async Task<(bool Success, string ErrorMessage)> CreateVehicleAsync(Vehicle model, string createdById)
         {
             try
             {
-                if (string.IsNullOrEmpty(model.ModelName) || model.ModelYear != 111111)
-                {
-                    throw new InvalidOperationException("Nedostaju potrebni podaci za stvaranje vozila.");
-                }
-
                 model.CreatedById = createdById;
                 model.CreateTime = DateTime.Now;
                 _dbContext.Vehicles.Add(model);
                 _dbContext.Entry(model).State = EntityState.Added;
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
 
-                return (true, null); // Uspješno stvoreno vozilo
+                return (true, null); 
             }
             catch (Exception ex)
             {
@@ -77,17 +72,17 @@ namespace Vjezba.Services
                 return (null, false, "Došlo je do greške prilikom dohvaćanja filtriranih vozila." + ex.Message);
             }
         }
-        public (bool Success, string ErrorMessage) DeleteVehicle(int id, ClaimsPrincipal user)
+        public async Task<(bool Success, string ErrorMessage)> DeleteVehicleAsync(int id, ClaimsPrincipal user)
         {
             try
             {
-                var model = _dbContext.Vehicles.FirstOrDefault(a => a.ID == id);
+                var model = await _dbContext.Vehicles.FirstOrDefaultAsync(a => a.ID == id);
                 var userVehicles = _dbContext.UserVehicles
             .Where(uv => uv.VehicleID == model.ID)
             .ToList();
                 if (userVehicles.Any())
                 {
-                    throw new InvalidOperationException("Tablica je povezana.");
+                    throw new InvalidOperationException("Izbrišite vozilo na ponudi.");
                 }
                 if (model == null)
                 {
@@ -97,9 +92,9 @@ namespace Vjezba.Services
                 model.IsDeleted = true;
                 model.DeletedById = _userManager.GetUserName(user);
                 model.DeleteTime = DateTime.Now;
-                _dbContext.SaveChanges();
+               await _dbContext.SaveChangesAsync();
 
-                return (true, null);  // Uspješno izbrisano vozilo
+                return (true, null);  
             }
             catch (Exception ex)
             {
@@ -107,11 +102,11 @@ namespace Vjezba.Services
             }
         }
 
-        public (bool Success, string ErrorMessage) EditVehicle(int id, ClaimsPrincipal user)
+        public async Task<(bool Success, string ErrorMessage)> EditVehicleAsync(int id, ClaimsPrincipal user)
         {
             try
             {
-                var vehicle = this._dbContext.Vehicles.Single(c => c.ID == id);
+                var vehicle = await this._dbContext.Vehicles.SingleAsync(c => c.ID == id);
                 vehicle.UpdatedById = _userManager.GetUserName(user);
 
                 var userVehicles = _dbContext.UserVehicles
@@ -135,7 +130,7 @@ namespace Vjezba.Services
                 };
 
                 this._dbContext.Vehicles.Add(newVehicle);
-                this._dbContext.SaveChanges();
+                await this._dbContext.SaveChangesAsync();
                 return (true, null);
 
             }

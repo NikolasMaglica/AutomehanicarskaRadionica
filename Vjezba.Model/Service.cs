@@ -12,13 +12,13 @@ namespace Vjezba.Model
 
         public int ID { get; set; }
         [Required(ErrorMessage = "Unos naziva usluge je obavezan.")]
-        [StringLength(40, ErrorMessage = "Naziv usluge može imati najviše 40 znakova.")]
+        [StringLength(40)]
         public string ServiceName { get; set; } = String.Empty;
         [Required(ErrorMessage = "Unos cijene usluge je obavezan.")]
-
+        [RegularExpression(@"^\d{1,9}(\.\d{1,2})?$", ErrorMessage = "Cijena mora imati najviše 9 mjesta prije i 2 mjesta poslije decimalne točke.")]
         public decimal ServicePrice { get; set; }
-        [StringLength(200, ErrorMessage = "Opis može imati najviše 200 znakova.")]
-        public string ServiceDescription { get; set; } = String.Empty;
+        [StringLength(200)]
+        public string? ServiceDescription { get; set; }
         public ICollection<ServiceOffer>? ServiceOffers { get; set; }
 
     }

@@ -22,7 +22,7 @@ namespace Vjezba.Web.Controllers
         public IActionResult Index()
         {
 
-            var offers = _dbContext.Offers.Include(o => o.OfferStatuses).Include(m => m.Clients).Include(a => a.AppUser).ToList();
+            var offers = _dbContext.Offers.Include(o => o.OfferStatuses).Include(m => m.Clients).Include(a => a.AppUser).Include(w => w.UserVehicles).ToList();
             return View(offers);
         }
         [HttpGet]
@@ -33,6 +33,7 @@ namespace Vjezba.Web.Controllers
             this.FillDropdownValuesUser();
             this.FillDropdownValuesServices();
             this.FillDropdownValuesMaterial();
+            this.FillDropdownValuesVehicle();
             Offer offer = new Offer();
             offer.MaterialOffers.Add(new MaterialOffer() { OfferId = 1 });
             offer.ServiceOffers.Add(new ServiceOffer() { OfferId = 1 });
@@ -49,7 +50,8 @@ namespace Vjezba.Web.Controllers
                 if (result.Success)
                 {
                     offer.TotalPrice = _offerService.CalculateTotalPrice(offer);
-                    _offerService.UpdateMaterialStock(offer);
+                    if (offer.OfferStatusId == 1)
+                        _offerService.UpdateMaterialStock(offer);
                     _dbContext.SaveChanges();
                     return RedirectToAction(nameof(Index));
                 }
@@ -59,6 +61,18 @@ namespace Vjezba.Web.Controllers
                 }
             }
             return View();
+        }
+
+        public IActionResult Details(int Id)
+        {
+            Offer offer = _dbContext.Offers.Include(e => e.MaterialOffers).Include(d=>d.ServiceOffers).Where(a => a.ID == Id).FirstOrDefault();
+            this.FillDropdownValuesMaterial();
+            this.FillDropdownValuesVehicle();
+            this.FillDropdownValuesClient();
+            this.FillDropdownValuesServices();
+            this.FillDropdownValuesUser();
+            this.FillDropdownValuesStatus();
+            return View(offer);
         }
         [HttpPost]
         public IActionResult Delete(int id)
@@ -73,9 +87,46 @@ namespace Vjezba.Web.Controllers
             {
                 ModelState.AddModelError("", model.ErrorMessage);
             }
-            var orders = _dbContext.Offers.Include(o => o.OfferStatuses).Include(m => m.Clients).Include(a => a.AppUser).ToList();
-            return View("Index", orders);
+            var offers = _dbContext.Offers.Include(o => o.OfferStatuses).Include(m => m.Clients).Include(a => a.AppUser).Include(w => w.UserVehicles).ToList();
+            return View("Index", offers);
         }
+
+        [HttpGet]
+        public IActionResult Edit(int Id)
+        {
+            Offer offer = _dbContext.Offers.Include(e => e.MaterialOffers).Where(a => a.ID == Id).FirstOrDefault();
+            this.FillDropdownValuesMaterial();
+            this.FillDropdownValuesVehicle();
+            this.FillDropdownValuesClient();
+            this.FillDropdownValuesServices();
+            this.FillDropdownValuesUser();
+            this.FillDropdownValuesStatus();
+            return View(offer);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Offer offer)
+        {
+            var result = _offerService.UpdateOffer(offer);
+
+            if (result.Success && ModelState.IsValid)
+            {
+                offer.TotalPrice = _offerService.CalculateTotalPrice(offer);
+                if (offer.OfferStatusId == 1)
+                    _offerService.UpdateMaterialStock(offer);
+                else
+                    _dbContext.SaveChanges();
+                return RedirectToAction("index");
+            }
+            else
+            {
+                ModelState.AddModelError("", result.ErrorMessage);
+            }
+
+            return View(offer);
+        }
+
+
         private void FillDropdownValuesStatus()
         {
             var selectItems = new List<SelectListItem>();
@@ -161,6 +212,33 @@ namespace Vjezba.Web.Controllers
             }
 
             ViewBag.PossibleServices = selectItems;
+
+        }
+        private void FillDropdownValuesVehicle()
+        {
+            var selectItems = new List<SelectListItem>();
+            var listItem = new SelectListItem();
+            listItem.Text = "- odaberite -";
+            listItem.Value = "";
+            selectItems.Add(listItem);
+
+            var vehicles = this._dbContext.UserVehicles.Where(m => m.IsActive == true).ToList();
+
+            foreach (var category in vehicles)
+            {
+                var serviceName = this._dbContext.Vehicles
+                    .Where(m => m.ID == category.VehicleID)
+                    .Select(m => m.ModelName)
+                    .FirstOrDefault();
+
+                var vehiclesInfo = $"{serviceName} - {category.KilometersTraveled}";
+                if (category.IsDeleted == false && category.IsActive == true)
+                {
+                    listItem = new SelectListItem(vehiclesInfo, category.ID.ToString());
+                    selectItems.Add(listItem);
+                }
+            }
+            ViewBag.PossibleVehicles = selectItems;
 
         }
     }

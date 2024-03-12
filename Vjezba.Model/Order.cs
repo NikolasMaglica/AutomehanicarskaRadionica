@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Vjezba.Model
 {
-    public class Order
+    public class Order:BaseEntity
     {
         public int ID { get; set; }
         [Required(ErrorMessage = "Unos datuma je obavezan.")]
@@ -20,15 +20,7 @@ namespace Vjezba.Model
         public int? OrderStatusId { get; set; }
         public OrderStatus? OrderStatus { get; set; }
         public virtual List<OrderMaterial>? OrderMaterials { get; set; } = new List<OrderMaterial>();
-		public string? CreatedById { get; set; }
-		public DateTime CreateTime { get; set; }
 
-		public string? UpdatedById { get; set; }
-		public DateTime UpdateTime { get; set; }
-		public string? DeletedById { get; set; }
-		public DateTime DeleteTime { get; set; }
-		public bool IsActive { get; set; } = true;
-		public bool IsDeleted { get; set; } = false;
 
-	}
+    }
 }

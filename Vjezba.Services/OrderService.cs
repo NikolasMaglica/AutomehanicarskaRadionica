@@ -57,7 +57,7 @@ namespace Vjezba.Services
                 model.DeleteTime = DateTime.Now;
                 _dbContext.SaveChanges();
 
-                return (true, null);  // Uspješno izbrisano vozilo
+                return (true, null); 
             }
             catch (Exception ex)
             {
@@ -77,7 +77,7 @@ namespace Vjezba.Services
                
                 _dbContext.SaveChanges();
 
-                return (true, null); // Uspješno stvoreno vozilo
+                return (true, null); 
             }
             catch (Exception ex)
             {

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Vjezba.Model
 {
@@ -11,8 +8,8 @@ namespace Vjezba.Model
     {
         public int ID { get; set; }
         [Required(ErrorMessage = "Unos imena proizvođača je obavezan.")]
+        [StringLength(40, ErrorMessage = "Ime proizvođača ne može biti duže od 40 znakova.")]
         public string Name { get; set; }
         public virtual ICollection<Vehicle>? Vehicles { get; set; }
-
     }
 }

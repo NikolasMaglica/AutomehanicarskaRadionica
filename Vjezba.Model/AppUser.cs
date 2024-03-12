@@ -10,10 +10,11 @@ namespace Vjezba.Model
 {
     public class AppUser : IdentityUser
     {
-        [Required]
+        [Required(ErrorMessage = "Unos imena je obavezan")]
+
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Unos prezimena je obavezan")]
         public string Surname { get; set; }
         public virtual ICollection<UserVehicle>? UserVehicles { get; set; }
         public virtual ICollection<Offer>? Offers { get; set; }

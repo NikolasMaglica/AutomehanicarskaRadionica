@@ -15,7 +15,7 @@ namespace Vjezba.Web.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return Redirect("/Offer");
         }
 
         public IActionResult Privacy(string lang)

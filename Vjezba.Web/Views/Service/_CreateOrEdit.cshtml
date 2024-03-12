@@ -1,7 +1,7 @@
 ﻿@model Vjezba.Model.Service
 
 <div class="form-group">
-	<label class="control-label">SNaziv usluge</label>
+	<label class="control-label">Naziv usluge</label>
 	<input asp-for="ServiceName" class="form-control" />
 	<span asp-validation-for="ServiceName" class="text-danger"></span>
 </div>
@@ -12,7 +12,8 @@
 </div>
 <div class="form-group">
 	<label class="control-label">Opis usluge</label>
-	<input asp-for="ServiceDescription" class="form-control" />
+	<textarea asp-for="ServiceDescription" class="form-control" rows="5"></textarea>
+
 	<span asp-validation-for="ServiceDescription" class="text-danger"></span>
 </div>
 <div class="form-group" style="margin-top: 10px;">

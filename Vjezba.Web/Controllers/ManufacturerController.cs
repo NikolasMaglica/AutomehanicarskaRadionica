@@ -21,18 +21,18 @@ namespace Vjezba.Web.Controllers
                 this._manufacturerService = manufacturerService;
             }
 
-            [AllowAnonymous]
-            public ActionResult Index()
+        [Authorize]
+        public ActionResult Index()
             {
 			var manufacturers = _dbContext.Manufacturers.Include(o => o.Vehicles).ToList();
 			return View(manufacturers);
 		}
 
-            [HttpPost]
-            public IActionResult Delete(int id)
+        [Authorize]
+        public async Task <IActionResult> Delete(int id)
             {
                 var user = User;
-                var model = _manufacturerService.DeleteManufacturer(id, user);
+                var model = await _manufacturerService.DeleteManufacturerAsync(id, user);
                 if (model.Success)
                 {
                     return RedirectToAction(nameof(Index));
@@ -48,13 +48,15 @@ namespace Vjezba.Web.Controllers
             {
                 return View();
             }
-            [HttpPost]
-            public IActionResult Create(Manufacturer model)
-            {
-                if (ModelState.IsValid)
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Create(Manufacturer model)
+        {
+            if (ModelState.IsValid)
                 {
                 var user = User;
-                var result = _manufacturerService.CreateManufacturer(model, user);
+                var result = await _manufacturerService.CreateManufacturerAsync(model, user);
 
                     if (result.Success)
                     {
@@ -69,17 +71,18 @@ namespace Vjezba.Web.Controllers
                 return View();
             }
 
-
-            [ActionName(nameof(Edit))]
-            public IActionResult Edit(int id)
-            {
-                var model = this._dbContext.Manufacturers.FirstOrDefault(c => c.ID == id);
+        [Authorize]
+        [ActionName(nameof(Edit))]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var model = await this._dbContext.Manufacturers.FirstOrDefaultAsync(c => c.ID == id);
                 return View(model);
-            }
+        }
 
-            [HttpPost]
-            [ActionName(nameof(Edit))]
-            public async Task<IActionResult> EditPost(int id)
+        [Authorize]
+        [HttpPost]
+        [ActionName(nameof(Edit))]
+        public async Task<IActionResult> EditPost(int id)
             {
                 if (ModelState.IsValid)
                 {
@@ -88,7 +91,7 @@ namespace Vjezba.Web.Controllers
                      manufacturer.UpdateTime = DateTime.Now;
                     var ok = await this.TryUpdateModelAsync(manufacturer);
                     var user = User;
-                    var result = _manufacturerService.EditManufacturer(id, user);
+                    var result = await _manufacturerService.EditManufacturerAsync(id, user);
                     if (result.Success && ok)
                     {
                         this._dbContext.SaveChanges();
@@ -99,9 +102,7 @@ namespace Vjezba.Web.Controllers
                         ModelState.AddModelError("", result.ErrorMessage);
                     }
                 }
-
-                return View();
-            
+                return View();  
         }
     }
 }

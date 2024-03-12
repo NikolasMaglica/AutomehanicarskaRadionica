@@ -27,7 +27,7 @@
                 Vozilo
             </th>
             <th>
-                Ukupna cijena
+                Ukupna cijena 
             </th>
             <th>
 Status ponude
@@ -40,6 +40,7 @@ Status ponude
         {
             if (@item.IsActive == true && item.IsDeleted == false)
             {
+
                 <tr>
                     <td>
                         @item.AppUser?.UserName
@@ -48,10 +49,10 @@ Status ponude
                         @item.Clients?.FullName 
                     </td>
                     <td>
-                        @item.UserVehicles?.KilometersTraveled
+                        @item.UserVehicles?.UserId;
                     </td>
                 <td>
-                    @item.TotalPrice
+                    @item.TotalPrice EUR
                 </td>
                 <td>
                     @item.OfferStatuses?.OfferStatusName
@@ -60,7 +61,7 @@ Status ponude
                     <td class="action-buttons d-flex flex-row">
 
                         <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-info ml-1">Uredi</a>
-                        <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-primary ml-1">Detalji narudžbe</a>
+                        <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-primary ml-1">Detalji ponude</a>
                         <form asp-action="Delete" method="post" onsubmit="return confirm('Jeste li sigurni da želite obrisati ponudu?');">
                             <input type="hidden" name="id" value="@item.ID" />
                             <button type="submit" class="btn btn-danger ml-1">Izbriši</button>

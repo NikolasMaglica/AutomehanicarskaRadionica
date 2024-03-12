@@ -8,24 +8,27 @@ using System.Threading.Tasks;
 
 namespace Vjezba.Model
 {
-	public class UserVehicle
+	public class UserVehicle:BaseEntity
 	{
 		public int ID { get; set; }
-		[Required]
+        [Required(ErrorMessage = "Unos prijeđenih kilometara je obavezan.")]
+        [Range(1, 999999, ErrorMessage = "Kilometraža može biti između 1 i 999 999 kilometara")]
 		public int KilometersTraveled { get; set; }
-		public string Description { get; set; }
-		[ForeignKey(nameof(Vehicle))]
-		public int? VehicleID { get; set; }
-		public Vehicle? Vehicle { get; set; }
-		[ForeignKey(nameof(AppUser))]
-		public string? UserId { get; set; }
-		public AppUser? AppUser { get; set; }
-		public string? CreatedById { get; set; }
-		public DateTime CreateTime { get; set; }
+        [StringLength(200)]
+        public string? Description { get; set; }
 
-		public string? UpdatedById { get; set; }
-		public DateTime UpdateTime { get; set; }
-		public bool IsActive { get; set; } = true;
+        [ForeignKey(nameof(Vehicle))]
+        [Required(ErrorMessage = "Unos vozila je obavezan.")]
+
+        public int? VehicleID { get; set; }
+		public Vehicle? Vehicle { get; set; }
+
+        [ForeignKey(nameof(AppUser))]
+        [Required(ErrorMessage = "Unos zaposlenika je obavezan.")]
+
+        public string? UserId { get; set; }
+		public AppUser? AppUser { get; set; }
+		
         public virtual ICollection<Offer>? Offers { get; set; }
 
 

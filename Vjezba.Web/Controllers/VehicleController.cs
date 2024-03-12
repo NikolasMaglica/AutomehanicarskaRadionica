@@ -22,12 +22,13 @@ namespace Vjezba.Web.Controllers
             this._vehicleService = vehicleService;
         }
 
-        [AllowAnonymous]
+        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult IndexAjax(VehicleFilterModel filter)
         {
@@ -54,35 +55,13 @@ namespace Vjezba.Web.Controllers
 
             return View(client);
         }
-        /*	public ActionResult Delete(int? id)
-			{
-				if (id == null)
-				{
-					 Console.WriteLine("Nema id");
-				}
-				var launchEntry = _dbContext.Vehicles.Find(id);
-				if (launchEntry == null)
-				{
-					Console.WriteLine("Nema id-a nije pronađen");
-				}
-				return PartialView("_DeleteModal", launchEntry);
-			}
-			// POST: Launch/Delete/5
-			[HttpPost, ActionName("Delete")]
-			[ValidateAntiForgeryToken]
-			public ActionResult DeleteConfirmed(int id)
-			{
-				var launchEntry = _dbContext.Vehicles.Find(id);
-				launchEntry.IsDeleted = true;
-				_dbContext.SaveChanges();
-				return RedirectToAction("Index");
-			}
-		*/
+
+        [Authorize]
         [HttpPost]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var user = User;
-            var model = _vehicleService.DeleteVehicle(id,user);
+            var model = await _vehicleService.DeleteVehicleAsync(id,user);
             if (model.Success)
             {
                 return RedirectToAction(nameof(Index));
@@ -91,21 +70,25 @@ namespace Vjezba.Web.Controllers
             {
                 ModelState.AddModelError("", model.ErrorMessage);
             }
-            var vehicles = _dbContext.Vehicles.Where(v => v.IsActive && v.IsDeleted).ToList();
+            var vehicles = await _dbContext.Vehicles.Where(v => v.IsActive && v.IsDeleted).ToListAsync();
             return View("Index", vehicles);
         }
+
+        [Authorize]
         public IActionResult Create()
         {
             this.FillDropdownValues();
             return View();
         }
+
+        [Authorize]
         [HttpPost]
-        public IActionResult Create(Vehicle model)
+        public async Task<IActionResult> Create(Vehicle model)
         {
             if (ModelState.IsValid)
             {
                 string createdById = _userManager.GetUserName(base.User);
-                var result = _vehicleService.CreateVehicle(model, createdById);
+                var result = await _vehicleService.CreateVehicleAsync(model, createdById);
 
                 if (result.Success)
                 {
@@ -121,27 +104,28 @@ namespace Vjezba.Web.Controllers
             return View();
         }
 
-
+        [Authorize]
         [ActionName(nameof(Edit))]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var model = this._dbContext.Vehicles.FirstOrDefault(c => c.ID == id);
+            var model = await this._dbContext.Vehicles.FirstOrDefaultAsync(c => c.ID == id);
             this.FillDropdownValues();
             return View(model);
         }
 
+        [Authorize]
         [HttpPost]
         [ActionName(nameof(Edit))]
         public async Task<IActionResult> EditPost(int id)
         {
             if (ModelState.IsValid)
             {
-            var vehicle = this._dbContext.Vehicles.Single(c => c.ID == id);
+            var vehicle = await this._dbContext.Vehicles.SingleAsync(c => c.ID == id);
             vehicle.UpdatedById = _userManager.GetUserName(base.User);
             vehicle.UpdateTime = DateTime.Now;
             var ok = await this.TryUpdateModelAsync(vehicle);
             var user = User;
-            var result = _vehicleService.EditVehicle(id, user);
+            var result = await _vehicleService.EditVehicleAsync(id, user);
             if (result.Success)
             {
                     this._dbContext.SaveChanges();

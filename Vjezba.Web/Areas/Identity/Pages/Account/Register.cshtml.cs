@@ -85,9 +85,9 @@ namespace Vjezba.Web.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = " {0} mora biti najmanje {2} i najviše {1} znamenaka duga.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Lozinka")]
             public string Password { get; set; }
 
             /// <summary>
@@ -95,14 +95,17 @@ namespace Vjezba.Web.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
+            [Display(Name = "Potvrdi lozinku")]
             [Compare("Password", ErrorMessage = "Lozinke se ne podudaraju.")]
             public string ConfirmPassword { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Unos imena je obavezan")]
+            [Display(Name = "Ime")]
+
             public string Name { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Unos prezimena je obavezan")]
+            [Display(Name = "Prezime")]
             public string Surname { get; set; }
         }
 

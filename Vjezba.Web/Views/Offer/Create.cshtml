@@ -38,6 +38,14 @@
                 <div class="col-md-6">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
+                        <label class="control-label">Vozilo</label>
+                        <select asp-for="UserVehicleId" asp-items="ViewBag.PossibleVehicles" class="form-control"></select>
+                        <span asp-validation-for="UserVehicleId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
                         <label class="control-label">Korisnik</label>
                         <select asp-for="UsersId" asp-items="ViewBag.User" class="form-control"></select>
                         <span asp-validation-for="UsersId" class="text-danger"></span>

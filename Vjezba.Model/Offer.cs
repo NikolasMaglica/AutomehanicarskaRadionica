@@ -13,13 +13,17 @@ namespace Vjezba.Model
         public int ID { get; set; }
         public decimal TotalPrice { get; set; }
 
+        [Required(ErrorMessage = "Unos klijenta je obavezan")]
+
         [ForeignKey(nameof(Client))]
         public int? ClientId { get; set; }
         public Client? Clients { get; set; }
+        [Required(ErrorMessage = "Unos  vozila je obavezan")]
 
         [ForeignKey(nameof(UserVehicle))]
         public int? UserVehicleId { get; set; }
         public UserVehicle? UserVehicles { get; set; }
+        [Required(ErrorMessage = "Unos statusa ponude je obavezan")]
 
         [ForeignKey(nameof(OfferStatus))]
         public int? OfferStatusId { get; set; }
@@ -27,17 +31,11 @@ namespace Vjezba.Model
 
         public virtual List<MaterialOffer>? MaterialOffers { get; set; } = new List<MaterialOffer>();
         public virtual List<ServiceOffer>? ServiceOffers { get; set; } = new List<ServiceOffer>();
+        [Required(ErrorMessage = "Unos zaposlenika je obavezan")]
+
         [ForeignKey(nameof(AppUser))]
         public string? UsersId { get; set; }
         public AppUser? AppUser { get; set; }
-        public string? CreatedById { get; set; }
-        public DateTime CreateTime { get; set; }
 
-        public string? UpdatedById { get; set; }
-        public DateTime UpdateTime { get; set; }
-        public string? DeletedById { get; set; }
-        public DateTime DeleteTime { get; set; }
-        public bool IsActive { get; set; } = true;
-        public bool IsDeleted { get; set; } = false;
     }
 }

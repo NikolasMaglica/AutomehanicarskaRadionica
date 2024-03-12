@@ -12,7 +12,10 @@ namespace Vjezba.Model
     {
         public int ID { get; set; }
         [Required(ErrorMessage = "Unos količine je obavezan.")]
+        [Range(1, 1000, ErrorMessage = "Unos mora biti između 1 i 1000")]
         public int Quantity { get; set; }
+        [Required(ErrorMessage = "Unos usluuge je obavezan.")]
+
         [ForeignKey(nameof(Service))]
         public int? ServiceId { get; set; }
         public Service? Services { get; set; }

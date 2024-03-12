@@ -19,7 +19,8 @@ namespace Vjezba.Services
         (bool Success, string ErrorMessage) DeleteOffer(int id, ClaimsPrincipal user);
         decimal CalculateTotalPrice(Offer order);
         (bool Success, string ErrorMessage) UpdateMaterialStock(Offer offer);
-        (bool Success, string ErrorMessage) UpdateOffer(Order order);
+        (bool Success, string ErrorMessage) UpdateOffer(Offer offer);
+
 
     }
     public class OfferService : IOfferService
@@ -38,7 +39,6 @@ namespace Vjezba.Services
         {
             decimal total = 0;
 
-            // Materijali
             if (offer.MaterialOffers == null)
             {
                 Console.WriteLine("Null je");
@@ -86,9 +86,11 @@ namespace Vjezba.Services
             {
 
                 _dbContext.Offers.Add(model);
+                model.CreatedById = _userManager.GetUserName(user);
+                model.CreateTime = DateTime.Now;
 
                 _dbContext.SaveChanges();
-                return (true, null); // Uspješno stvoreno vozilo
+                return (true, null); 
             }
             catch (Exception ex)
             {
@@ -117,14 +119,14 @@ namespace Vjezba.Services
 
                 if (model == null)
                 {
-                    throw new InvalidOperationException("Narudžba nije pronađeno.");
+                    throw new InvalidOperationException("Ponuda nije pronađena.");
                 }
 
                 model.IsDeleted = true;
                 model.DeletedById = _userManager.GetUserName(user);
                 model.DeleteTime = DateTime.Now;
                 _dbContext.SaveChanges();
-                return (true, null);  // Uspješno izbrisano vozilo
+                return (true, null); 
             }
             catch (Exception ex)
             {
@@ -143,10 +145,8 @@ namespace Vjezba.Services
                     {
                         if (offerMaterial.OfferId != null && offerMaterial.MaterialId != null)
                         {
-                            // Pronađi materijal iz narudžbe
                             Material material = _dbContext.Materials.Find(offerMaterial.MaterialId);
-
-                            // Ažuriraj količinu materijala u skladištu
+                         
                             if (material != null)
                             {
 
@@ -156,6 +156,7 @@ namespace Vjezba.Services
                         }
                     }
                 }
+              
                 _dbContext.SaveChanges();
                 return (true, null);
             }
@@ -166,9 +167,25 @@ namespace Vjezba.Services
             }
         }
 
-            public (bool Success, string ErrorMessage) UpdateOffer(Order order)
+        public (bool Success, string ErrorMessage) UpdateOffer(Offer offer)
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<MaterialOffer> offDetails = _dbContext.MaterialOffers.Where(d => d.OfferId == offer.ID).ToList();
+                _dbContext.MaterialOffers.RemoveRange(offDetails);
+                _dbContext.SaveChanges();
+
+                _dbContext.Attach(offer);
+                _dbContext.Entry(offer).State = EntityState.Modified;
+                _dbContext.MaterialOffers.AddRange(offer.MaterialOffers);
+
+                _dbContext.SaveChanges();
+                return (true, null);
+            }
+            catch (Exception ex)
+            {
+                return (false, "Došlo je do greške prilikom ažuriranja narudžbe." + ex.Message);
+            }
         }
     }
 

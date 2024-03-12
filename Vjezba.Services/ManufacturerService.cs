@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using System.Text;
 using Vjezba.DAL;
@@ -8,9 +9,9 @@ namespace Vjezba.Services
 {
     public interface IManufacturerService
     {
-        (bool Success, string ErrorMessage) CreateManufacturer(Manufacturer model,ClaimsPrincipal user);
-        (bool Success, string ErrorMessage) DeleteManufacturer(int id, ClaimsPrincipal user);
-        (bool Success, string ErrorMessage) EditManufacturer(int id, ClaimsPrincipal user);
+        Task<(bool Success, string ErrorMessage)> CreateManufacturerAsync(Manufacturer model, ClaimsPrincipal user);
+        Task<(bool Success, string ErrorMessage)> DeleteManufacturerAsync(int id, ClaimsPrincipal user);
+        Task<(bool Success, string ErrorMessage)> EditManufacturerAsync(int id, ClaimsPrincipal user);
 
     }
     public class ManufacturerService : IManufacturerService
@@ -25,18 +26,13 @@ namespace Vjezba.Services
 			_user = user;
 
 		}
-		public (bool Success, string ErrorMessage) CreateManufacturer(Manufacturer model,ClaimsPrincipal user)
+        public async Task<(bool Success, string ErrorMessage)> CreateManufacturerAsync(Manufacturer model, ClaimsPrincipal user)
         {
             try
             {
-                /*var existingManufacturer = _dbContext.Manufacturers.SingleOrDefault(x=> x.Name == model.Name); 
-
-                if (existingManufacturer != null && !existingManufacturer.IsDeleted)
-                {
-                    throw new Exception("Naziv proizvođača je unesen");
-                }*/
-                var existingManufacturer = _dbContext.Manufacturers
-            .FirstOrDefault(x => x.Name == model.Name && x.IsDeleted == false);
+            
+                var existingManufacturer = await _dbContext.Manufacturers
+            .FirstOrDefaultAsync(x => x.Name == model.Name && x.IsDeleted == false);
                 if (existingManufacturer != null)
                 {
                     throw new Exception("Naziv proizvođača je unesen");
@@ -45,8 +41,8 @@ namespace Vjezba.Services
                 {
                     model.CreatedById = _userManager.GetUserName(user);
                     model.CreateTime = DateTime.Now;
-                    _dbContext.Manufacturers.Add(model);
-                    _dbContext.SaveChanges();
+                    await _dbContext.Manufacturers.AddAsync(model);
+                    await _dbContext.SaveChangesAsync();
 
                     return (true, null); // Uspješno stvoreno vozilo
                 }
@@ -58,13 +54,13 @@ namespace Vjezba.Services
             }
         }
 
-     
 
-        public (bool Success, string ErrorMessage) DeleteManufacturer(int id, ClaimsPrincipal user)
+
+        public async Task<(bool Success, string ErrorMessage)> DeleteManufacturerAsync(int id, ClaimsPrincipal user)
         {
             try
             {
-                var model = _dbContext.Manufacturers.FirstOrDefault(a => a.ID == id);
+                var model = await _dbContext.Manufacturers.FirstOrDefaultAsync(a => a.ID == id);
 
                 var manufacturer = _dbContext.Vehicles
                        .Where(uv => uv.ManufacturerID == model.ID && uv.IsDeleted == false)
@@ -76,7 +72,7 @@ namespace Vjezba.Services
                 model.IsDeleted = true;
                 model.DeletedById = _userManager.GetUserName(user);
                 model.DeleteTime = DateTime.Now;
-                _dbContext.SaveChanges();
+               await _dbContext.SaveChangesAsync();
 
                 return (true, null);
             }
@@ -86,11 +82,11 @@ namespace Vjezba.Services
             }
         }
 
-        public (bool Success, string ErrorMessage) EditManufacturer(int id, ClaimsPrincipal user)
+        public async Task<(bool Success, string ErrorMessage)> EditManufacturerAsync(int id, ClaimsPrincipal user)
         {
             try
             {
-                var manufacturer = this._dbContext.Manufacturers.FirstOrDefault(c => c.ID == id);
+                var manufacturer = await this._dbContext.Manufacturers.FirstOrDefaultAsync(c => c.ID == id);
                 manufacturer.UpdatedById = _userManager.GetUserName(user);
 
                 manufacturer.IsActive = false;
@@ -104,8 +100,8 @@ namespace Vjezba.Services
                 };
 
                 this._dbContext.Manufacturers.Add(newManufacturer);
-                var existingManufacturer = _dbContext.Manufacturers
-        .FirstOrDefault(x => x.Name == manufacturer.Name && x.IsDeleted == false);
+                var existingManufacturer = await _dbContext.Manufacturers
+        .FirstOrDefaultAsync(x => x.Name == manufacturer.Name && x.IsDeleted == false);
                 if (existingManufacturer != null)
                 {
                     throw new Exception("Naziv proizvođača je već unesen");
@@ -117,7 +113,7 @@ namespace Vjezba.Services
                 {
                     throw new InvalidOperationException("Izbrišite vozilo");
                 }
-                this._dbContext.SaveChanges();
+               await this._dbContext.SaveChangesAsync();
                 return (true, null);
 
             }
