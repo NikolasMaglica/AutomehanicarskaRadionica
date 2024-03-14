@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,10 @@ namespace Vjezba.Services
    
         public interface IMaterialService
         {
-            (bool Success, string ErrorMessage) CreateMaterial(Material model, ClaimsPrincipal user);
+        Task<(bool Success, string ErrorMessage)> CreateMaterialAsync(Material model, ClaimsPrincipal user);
 
-            (bool Success, string ErrorMessage) DeleteMaterial(int id, ClaimsPrincipal user);
-            (bool Success, string ErrorMessage) EditMaterial(int id, ClaimsPrincipal user);
+        Task<(bool Success, string ErrorMessage)> DeleteMaterialAsync(int id, ClaimsPrincipal user);
+        Task<(bool Success, string ErrorMessage)> EditMaterialAsync(int id, ClaimsPrincipal user);
 
 
         }
@@ -33,7 +34,7 @@ namespace Vjezba.Services
 
             }
 
-            public (bool Success, string ErrorMessage) CreateMaterial(Material model, ClaimsPrincipal user)
+        public async Task<(bool Success, string ErrorMessage)> CreateMaterialAsync(Material model, ClaimsPrincipal user)
             {
             try
             {
@@ -48,8 +49,8 @@ namespace Vjezba.Services
 
                     model.CreatedById = _userManager.GetUserName(user);
                     model.CreateTime = DateTime.Now;
-                    _dbContext.Materials.Add(model);
-                    _dbContext.SaveChanges();
+                   await _dbContext.Materials.AddAsync(model);
+                   await _dbContext.SaveChangesAsync();
                     return (true, null);
                 }
             }
@@ -60,11 +61,11 @@ namespace Vjezba.Services
             }
         }
 
-            public (bool Success, string ErrorMessage) DeleteMaterial(int id, ClaimsPrincipal user)
+        public async Task<(bool Success, string ErrorMessage)> DeleteMaterialAsync(int id, ClaimsPrincipal user)
             {
             try
             {
-                var model = _dbContext.Materials.FirstOrDefault(a => a.ID == id);
+                var model = await _dbContext.Materials.FirstOrDefaultAsync(a => a.ID == id);
                 var materialOffer = _dbContext.MaterialOffers
             .Where(uv => uv.MaterialId == model.ID)
             .ToList();
@@ -83,7 +84,7 @@ namespace Vjezba.Services
                 model.IsDeleted = true;
                 model.DeletedById = _userManager.GetUserName(user);
                 model.DeleteTime = DateTime.Now;
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
 
                 return (true, null);
             }
@@ -93,11 +94,11 @@ namespace Vjezba.Services
             }
         }
 
-            public (bool Success, string ErrorMessage) EditMaterial(int id, ClaimsPrincipal user)
+        public async Task<(bool Success, string ErrorMessage)> EditMaterialAsync(int id, ClaimsPrincipal user)
             {
             try
             {
-                var material = this._dbContext.Materials.FirstOrDefault(c => c.ID == id);
+                var material =await this._dbContext.Materials.FirstOrDefaultAsync(c => c.ID == id);
                 material.UpdatedById = _userManager.GetUserName(user);
 
                 material.IsActive = false;
@@ -136,7 +137,7 @@ namespace Vjezba.Services
                 {
                     throw new InvalidOperationException("Izbrišite materijal iz narudžbe");
                 }
-                this._dbContext.SaveChanges();
+               await this._dbContext.SaveChangesAsync();
                 return (true, null);
             }
             catch (Exception ex)

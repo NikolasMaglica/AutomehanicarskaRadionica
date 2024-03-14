@@ -1,12 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 using Vjezba.DAL;
 using Vjezba.Model;
 
@@ -14,12 +8,12 @@ namespace Vjezba.Services
 {
     public interface IOfferService
     {
-        (bool Success, string ErrorMessage) CreateOffer(Offer model, ClaimsPrincipal user);
+        Task<(bool Success, string ErrorMessage)> CreateOfferAsync(Offer model, ClaimsPrincipal user);
 
-        (bool Success, string ErrorMessage) DeleteOffer(int id, ClaimsPrincipal user);
+        Task<(bool Success, string ErrorMessage)> DeleteOfferAsync(int id, ClaimsPrincipal user);
         decimal CalculateTotalPrice(Offer order);
-        (bool Success, string ErrorMessage) UpdateMaterialStock(Offer offer);
-        (bool Success, string ErrorMessage) UpdateOffer(Offer offer);
+        Task<(bool Success, string ErrorMessage)> UpdateMaterialStockAsync(Offer offer);
+        Task<(bool Success, string ErrorMessage)> UpdateOfferAsync(Offer offer);
 
 
     }
@@ -80,16 +74,16 @@ namespace Vjezba.Services
             return total;
         }
 
-        public (bool Success, string ErrorMessage) CreateOffer(Offer model, ClaimsPrincipal user)
+        public async Task<(bool Success, string ErrorMessage)> CreateOfferAsync(Offer model, ClaimsPrincipal user)
         {
             try
             {
-
-                _dbContext.Offers.Add(model);
                 model.CreatedById = _userManager.GetUserName(user);
                 model.CreateTime = DateTime.Now;
+                await _dbContext.Offers.AddAsync(model);
+                _dbContext.Entry(model).State = EntityState.Added;
 
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
                 return (true, null); 
             }
             catch (Exception ex)
@@ -99,11 +93,11 @@ namespace Vjezba.Services
             }
         }
 
-        public (bool Success, string ErrorMessage) DeleteOffer(int id, ClaimsPrincipal user)
+        public async Task<(bool Success, string ErrorMessage)> DeleteOfferAsync(int id, ClaimsPrincipal user)
         {
             try
             {
-                var model = _dbContext.Offers.FirstOrDefault(a => a.ID == id);
+                var model =await _dbContext.Offers.FirstOrDefaultAsync(a => a.ID == id);
                 var offermaterials = _dbContext.MaterialOffers
             .Where(uv => uv.OfferId == model.ID)
             .ToList();
@@ -125,7 +119,7 @@ namespace Vjezba.Services
                 model.IsDeleted = true;
                 model.DeletedById = _userManager.GetUserName(user);
                 model.DeleteTime = DateTime.Now;
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
                 return (true, null); 
             }
             catch (Exception ex)
@@ -133,9 +127,9 @@ namespace Vjezba.Services
                 return (false, "Došlo je do greške prilikom brisanja ponude." + ex.Message);
             }
         }
- 
 
-        public (bool Success, string ErrorMessage) UpdateMaterialStock(Offer offer)
+
+        public async Task<(bool Success, string ErrorMessage)> UpdateMaterialStockAsync(Offer offer)
         {
             try
             {
@@ -157,7 +151,7 @@ namespace Vjezba.Services
                     }
                 }
               
-                _dbContext.SaveChanges();
+               await _dbContext.SaveChangesAsync();
                 return (true, null);
             }
             catch (Exception ex)
@@ -167,19 +161,24 @@ namespace Vjezba.Services
             }
         }
 
-        public (bool Success, string ErrorMessage) UpdateOffer(Offer offer)
+        public async Task<(bool Success, string ErrorMessage)> UpdateOfferAsync(Offer offer)
         {
             try
             {
-                List<MaterialOffer> offDetails = _dbContext.MaterialOffers.Where(d => d.OfferId == offer.ID).ToList();
+                List<MaterialOffer> offDetails = await _dbContext.MaterialOffers.Where(d => d.OfferId == offer.ID).ToListAsync();
+                List<ServiceOffer> serDetails = await _dbContext.ServiceOffers.Where(d => d.OfferId == offer.ID).ToListAsync();
+
                 _dbContext.MaterialOffers.RemoveRange(offDetails);
-                _dbContext.SaveChanges();
+                _dbContext.ServiceOffers.RemoveRange(serDetails);
+
+                await _dbContext.SaveChangesAsync();
 
                 _dbContext.Attach(offer);
                 _dbContext.Entry(offer).State = EntityState.Modified;
                 _dbContext.MaterialOffers.AddRange(offer.MaterialOffers);
+                _dbContext.ServiceOffers.AddRange(offer.ServiceOffers);
 
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
                 return (true, null);
             }
             catch (Exception ex)
@@ -187,6 +186,8 @@ namespace Vjezba.Services
                 return (false, "Došlo je do greške prilikom ažuriranja narudžbe." + ex.Message);
             }
         }
+
+
     }
 
 }

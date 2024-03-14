@@ -65,14 +65,17 @@ namespace Vjezba.Web.Controllers
         [ActionName(nameof(Edit))]
         public async Task<IActionResult> EditPost(int id)
         {
-            var client = this._dbContext.Clients.Single(c => c.ID == id);
-            var ok = await this.TryUpdateModelAsync(client);
-
-            if (ok && this.ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                client.UpdatedById = _userManager.GetUserId(base.User);
-                this._dbContext.SaveChanges();
-                return RedirectToAction(nameof(Index));
+                var client = this._dbContext.Clients.Single(c => c.ID == id);
+                var ok = await this.TryUpdateModelAsync(client);
+
+                if (ok && this.ModelState.IsValid)
+                {
+                    client.UpdatedById = _userManager.GetUserId(base.User);
+                    this._dbContext.SaveChanges();
+                    return RedirectToAction(nameof(Index));
+                }
             }
             return View();
         }

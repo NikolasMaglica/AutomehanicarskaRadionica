@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,14 +20,17 @@ namespace Vjezba.Web.Controllers
             this._userManager = userManager;
             _offerService = offerService;
         }
-        public IActionResult Index()
+        [Authorize]
+        public async Task<IActionResult> Index()
         {
 
             var offers = _dbContext.Offers.Include(o => o.OfferStatuses).Include(m => m.Clients).Include(a => a.AppUser).Include(w => w.UserVehicles).ToList();
             return View(offers);
         }
+
+        [Authorize]
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             this.FillDropdownValuesStatus();
             this.FillDropdownValuesClient();
@@ -40,19 +44,21 @@ namespace Vjezba.Web.Controllers
 
             return View(offer);
         }
+
+        [Authorize]
         [HttpPost]
-        public IActionResult Create(Offer offer)
+        public async Task<IActionResult> Create(Offer offer)
         {
             if (ModelState.IsValid)
             {
                 var user = User;
-                var result = _offerService.CreateOffer(offer, user); 
+                var result = await _offerService.CreateOfferAsync(offer, user); 
                 if (result.Success)
                 {
                     offer.TotalPrice = _offerService.CalculateTotalPrice(offer);
                     if (offer.OfferStatusId == 1)
-                        _offerService.UpdateMaterialStock(offer);
-                    _dbContext.SaveChanges();
+                       await _offerService.UpdateMaterialStockAsync(offer);
+                   await _dbContext.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
                 else
@@ -63,9 +69,10 @@ namespace Vjezba.Web.Controllers
             return View();
         }
 
-        public IActionResult Details(int Id)
+        [Authorize]
+        public async Task<IActionResult> Details(int Id)
         {
-            Offer offer = _dbContext.Offers.Include(e => e.MaterialOffers).Include(d=>d.ServiceOffers).Where(a => a.ID == Id).FirstOrDefault();
+            Offer offer = await _dbContext.Offers.Include(e => e.MaterialOffers).Include(d=>d.ServiceOffers).Where(a => a.ID == Id).FirstOrDefaultAsync();
             this.FillDropdownValuesMaterial();
             this.FillDropdownValuesVehicle();
             this.FillDropdownValuesClient();
@@ -74,11 +81,13 @@ namespace Vjezba.Web.Controllers
             this.FillDropdownValuesStatus();
             return View(offer);
         }
+
+        [Authorize]
         [HttpPost]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var user = User;
-            var model = _offerService.DeleteOffer(id, user);
+            var model = await _offerService.DeleteOfferAsync(id, user);
             if (model.Success)
             {
                 return RedirectToAction(nameof(Index));
@@ -87,14 +96,15 @@ namespace Vjezba.Web.Controllers
             {
                 ModelState.AddModelError("", model.ErrorMessage);
             }
-            var offers = _dbContext.Offers.Include(o => o.OfferStatuses).Include(m => m.Clients).Include(a => a.AppUser).Include(w => w.UserVehicles).ToList();
+            var offers = await _dbContext.Offers.Include(o => o.OfferStatuses).Include(m => m.Clients).Include(a => a.AppUser).Include(w => w.UserVehicles).ToListAsync();
             return View("Index", offers);
         }
 
+        [Authorize]
         [HttpGet]
-        public IActionResult Edit(int Id)
+        public async Task<IActionResult> Edit(int Id)
         {
-            Offer offer = _dbContext.Offers.Include(e => e.MaterialOffers).Where(a => a.ID == Id).FirstOrDefault();
+            Offer offer =await _dbContext.Offers.Include(e => e.MaterialOffers).Include(a=>a.ServiceOffers).Where(a => a.ID == Id).FirstOrDefaultAsync();
             this.FillDropdownValuesMaterial();
             this.FillDropdownValuesVehicle();
             this.FillDropdownValuesClient();
@@ -104,25 +114,32 @@ namespace Vjezba.Web.Controllers
             return View(offer);
         }
 
+        [Authorize]
         [HttpPost]
-        public IActionResult Edit(Offer offer)
+        public async Task<IActionResult> Edit(Offer offer)
         {
-            var result = _offerService.UpdateOffer(offer);
+            var result = await _offerService.UpdateOfferAsync(offer);
+
 
             if (result.Success && ModelState.IsValid)
             {
                 offer.TotalPrice = _offerService.CalculateTotalPrice(offer);
                 if (offer.OfferStatusId == 1)
-                    _offerService.UpdateMaterialStock(offer);
+                    await _offerService.UpdateMaterialStockAsync(offer);
                 else
-                    _dbContext.SaveChanges();
+                  await  _dbContext.SaveChangesAsync();
                 return RedirectToAction("index");
             }
             else
             {
                 ModelState.AddModelError("", result.ErrorMessage);
             }
-
+            this.FillDropdownValuesMaterial();
+            this.FillDropdownValuesVehicle();
+            this.FillDropdownValuesClient();
+            this.FillDropdownValuesServices();
+            this.FillDropdownValuesUser();
+            this.FillDropdownValuesStatus();
             return View(offer);
         }
 
@@ -152,7 +169,9 @@ namespace Vjezba.Web.Controllers
             listItem.Value = "";
             selectItems.Add(listItem);
 
-            foreach (var category in this._dbContext.Clients)
+            var clients = this._dbContext.Clients.Where(m => m.IsActive == true && !m.IsDeleted).ToList();
+
+            foreach (var category in clients)
             {
                 var clientInfo = $"{category.FirstName}  {category.LastName}";
                 listItem = new SelectListItem(clientInfo, category.ID.ToString());
@@ -169,6 +188,7 @@ namespace Vjezba.Web.Controllers
             listItem.Text = "- odaberite -";
             listItem.Value = "";
             selectItems.Add(listItem);
+
 
             foreach (var category in this._dbContext.Users)
             {
@@ -187,8 +207,10 @@ namespace Vjezba.Web.Controllers
             listItem.Text = "- odaberite -";
             listItem.Value = "";
             selectItems.Add(listItem);
+            var material = this._dbContext.Materials.Where(m => m.IsActive == true && !m.IsDeleted).ToList();
 
-            foreach (var category in this._dbContext.Materials)
+
+            foreach (var category in material)
             {
                 listItem = new SelectListItem(category.MaterialName, category.ID.ToString());
                 selectItems.Add(listItem);
@@ -204,8 +226,10 @@ namespace Vjezba.Web.Controllers
             listItem.Text = "- odaberite -";
             listItem.Value = "";
             selectItems.Add(listItem);
+            var services = this._dbContext.Services.Where(m => m.IsActive == true && !m.IsDeleted).ToList();
 
-            foreach (var category in this._dbContext.Services)
+
+            foreach (var category in services)
             {
                 listItem = new SelectListItem(category.ServiceName, category.ID.ToString());
                 selectItems.Add(listItem);
@@ -222,7 +246,7 @@ namespace Vjezba.Web.Controllers
             listItem.Value = "";
             selectItems.Add(listItem);
 
-            var vehicles = this._dbContext.UserVehicles.Where(m => m.IsActive == true).ToList();
+            var vehicles = this._dbContext.UserVehicles.Where(m => m.IsActive == true && !m.IsDeleted).ToList();
 
             foreach (var category in vehicles)
             {

@@ -97,24 +97,26 @@ namespace Vjezba.Web.Controllers
 
         [Authorize]
         [HttpPost]
-		public IActionResult Create(UserVehicle model)
-		{
-			if (ModelState.IsValid)
-			{
-				model.CreatedById = _userManager.GetUserName(base.User);
-				model.CreateTime = DateTime.Now;
-				this._dbContext.UserVehicles.Add(model);
-				this._dbContext.SaveChanges();
-
-				return RedirectToAction(nameof(Index));
-			}
-			else
-			{
-				this.FillDropdownValues();
-				this.FillDropdownValuesUser();
-				return View();
-			}
-		}
+        public async Task<IActionResult> Create(UserVehicle model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = User;
+                var result = await _uservehicleService.CreateUserVehicleAsync(model, user);
+                if (result.Success)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    ModelState.AddModelError("", result.ErrorMessage);
+                }
+            }
+                    this.FillDropdownValues();
+                    this.FillDropdownValuesUser();
+                    return View();           
+            
+        }
 
 		private void FillDropdownValuesUser()
 		{

@@ -36,7 +36,7 @@ namespace Vjezba.DAL
         {
             modelBuilder.Entity<Material>()
         .Property(m => m.MaterialPrice)
-        .HasColumnType("decimal(18,2)");  // Prilagodi preciznost i skaliranje prema potrebama
+        .HasColumnType("decimal(18,2)"); 
 
             modelBuilder.Entity<Offer>()
                 .Property(o => o.TotalPrice)

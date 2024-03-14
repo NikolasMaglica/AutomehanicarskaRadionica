@@ -13,10 +13,10 @@ namespace Vjezba.Services
 {
     public interface IServiceService
     {
-        (bool Success, string ErrorMessage) CreateService(Service model, ClaimsPrincipal user);
+        Task<(bool Success, string ErrorMessage)> CreateServiceAsync(Service model, ClaimsPrincipal user);
 
-        (bool Success, string ErrorMessage) DeleteService(int id, ClaimsPrincipal user);
-        (bool Success, string ErrorMessage) EditService(int id, ClaimsPrincipal user);
+        Task<(bool Success, string ErrorMessage)> DeleteServiceAsync(int id, ClaimsPrincipal user);
+        Task<(bool Success, string ErrorMessage)> EditServiceAsync(int id, ClaimsPrincipal user);
 
 
     }
@@ -33,11 +33,11 @@ namespace Vjezba.Services
 
         }
 
-        public (bool Success, string ErrorMessage) DeleteService(int id, ClaimsPrincipal user)
+        public async Task<(bool Success, string ErrorMessage)> DeleteServiceAsync(int id, ClaimsPrincipal user)
         {
             try
             {
-                var model = _dbContext.Services.FirstOrDefault(a => a.ID == id);
+                var model = await _dbContext.Services.FirstOrDefaultAsync(a => a.ID == id);
                 var serviceoffer = _dbContext.ServiceOffers
             .Where(uv => uv.ServiceId == model.ID)
             .ToList();
@@ -50,7 +50,7 @@ namespace Vjezba.Services
                 model.IsDeleted = true;
                 model.DeletedById = _userManager.GetUserName(user);
                 model.DeleteTime = DateTime.Now;
-                _dbContext.SaveChanges();
+                 await  _dbContext.SaveChangesAsync();
 
                 return (true, null);  
             }
@@ -60,7 +60,7 @@ namespace Vjezba.Services
             }
         }
 
-        public (bool Success, string ErrorMessage) CreateService(Service model, ClaimsPrincipal user)
+        public async Task<(bool Success, string ErrorMessage)> CreateServiceAsync(Service model, ClaimsPrincipal user)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace Vjezba.Services
                     model.CreatedById = _userManager.GetUserName(user);
                     model.CreateTime = DateTime.Now;
                     _dbContext.Services.Add(model);
-                    _dbContext.SaveChanges();
+                   await _dbContext.SaveChangesAsync();
                     return (true, null);
                 }
             }
@@ -87,11 +87,11 @@ namespace Vjezba.Services
             }
         }
 
-        public (bool Success, string ErrorMessage) EditService(int id, ClaimsPrincipal user)
+        public async Task<(bool Success, string ErrorMessage)> EditServiceAsync(int id, ClaimsPrincipal user)
         {
             try
             {
-                var service = this._dbContext.Services.FirstOrDefault(c => c.ID == id);
+                var service = await this._dbContext.Services.FirstOrDefaultAsync(c => c.ID == id);
                 service.UpdatedById = _userManager.GetUserName(user);
 
                 service.IsActive = false;
@@ -106,7 +106,7 @@ namespace Vjezba.Services
                     IsActive = true,
                 };
 
-                this._dbContext.Services.Add(newService);
+                await this._dbContext.Services.AddAsync(newService);
                 var existingService = _dbContext.Services
         .FirstOrDefault(x => x.ServiceName == service.ServiceName && x.IsDeleted == false);
                 if (existingService != null)
@@ -120,7 +120,7 @@ namespace Vjezba.Services
                 {
                     throw new InvalidOperationException("Izbrišite vozilo");
                 }
-                this._dbContext.SaveChanges();
+               await this._dbContext.SaveChangesAsync();
                 return (true, null);
             }
             catch (Exception ex)

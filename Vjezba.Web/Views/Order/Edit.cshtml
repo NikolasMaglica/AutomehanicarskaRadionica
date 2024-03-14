@@ -119,7 +119,6 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
@@ -135,59 +134,65 @@
 
             var table = document.getElementById('EduTable');
             var rows = table.getElementsByTagName('tr');
-            if (rows.length == 1) {
-                alert("This Row Cannot Be Deleted");
-                return;
-            }
-
-
-
-
             $(btn).closest('tr').remove();
         }
 
 
-
         function AddItem(btn) {
-
             var table = document.getElementById('EduTable');
             var rows = table.getElementsByTagName('tr');
 
+            if (rows.length <= 1) {
+                var emptyRowHtml = `
+                    <tr>
+                        <td>
+                            <input type='text' name='OrderMaterials[0].Quantity' class='form-control' />
+                            <div class='text-danger' id='quantity-warning'></div>
+                        </td>
+                        <td>
+                            <select name='OrderMaterials[0].MaterialId' class='form-control'>
+        @foreach (var item in ViewBag.PossibleMaterials)
+        {
+                                        <option value='@item.Value'>@item.Text</option>
+        }
+                            </select>
+                            <span class='text-danger'></span>
+                        </td>
+                        <td style='width:60px;'>
+                            <button type='button' class='btn btn-sm btn-danger visible' onclick='DeleteItem(this)'>Delete</button>
+                        </td>
+                    </tr>`;
+                table.innerHTML += emptyRowHtml;
+                return;
+            }
+
             var rowOuterHtml = rows[rows.length - 1].outerHTML;
-
             var lastrowIdx = document.getElementById('hdnLastIndex').value;
-
             var nextrowIdx = eval(lastrowIdx) + 1;
-
             document.getElementById('hdnLastIndex').value = nextrowIdx;
-
             rowOuterHtml = rowOuterHtml.replaceAll('_' + lastrowIdx + '_', '_' + nextrowIdx + '_');
             rowOuterHtml = rowOuterHtml.replaceAll('[' + lastrowIdx + ']', '[' + nextrowIdx + ']');
             rowOuterHtml = rowOuterHtml.replaceAll('-' + lastrowIdx, '-' + nextrowIdx);
 
-
             var newRow = table.insertRow();
             newRow.innerHTML = rowOuterHtml;
 
-
-
-            var btnAddID = btn.id;
-            var btnDeleteid = btnAddID.replaceAll('btnadd', 'btnremove');
-
-            var delbtn = document.getElementById(btnDeleteid);
-            delbtn.classList.add("visible");
-            delbtn.classList.remove("invisible");
-
-
-            var addbtn = document.getElementById(btnAddID);
-            addbtn.classList.remove("visible");
-            addbtn.classList.add("invisible");
-
+            if (rows.length > 1) {
+                var btnAddID = btn.id;
+                var btnDeleteid = btnAddID.replaceAll('btnadd', 'btnremove');
+                var delbtn = document.getElementById(btnDeleteid);
+                delbtn.classList.add("visible");
+                delbtn.classList.remove("invisible");
+                var addbtn = document.getElementById(btnAddID);
+                addbtn.classList.remove("visible");
+                addbtn.classList.add("invisible");
+            }
         }
+
+
 
 
 
 
     </script>
-
 }

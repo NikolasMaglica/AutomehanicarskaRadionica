@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -23,33 +24,40 @@ namespace Vjezba.Web.Controllers
             this._userManager = userManager;
             this._orderService = orderService;
         }
-        public IActionResult Index()
+
+        [Authorize]
+        public async Task<IActionResult> Index()
         {
 
             var orders = _dbContext.Orders.Include(o => o.OrderStatus).ToList();
             return View(orders);
         }
+
+        [Authorize]
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             this.FillDropdownValues();
             this.FillDropdownValuesStatus();
             Order order = new Order();
-            order.OrderMaterials.Add(new OrderMaterial() { OrderId = 1 });
+            order.OrderMaterials.Add(new OrderMaterial() { ID = 1 });
             return View(order);
         }
-        public IActionResult Details(int Id)
+
+        [Authorize]
+        public async Task<IActionResult> Details(int Id)
         {
             Order order = _dbContext.Orders.Include(e => e.OrderMaterials).Where(a => a.ID == Id).FirstOrDefault();
             this.FillDropdownValues();
             return View(order);
         }
 
+        [Authorize]
         [HttpPost]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var user = User;
-            var model = _orderService.DeleteOrder(id, user);
+            var model =await _orderService.DeleteOrderAsync(id, user);
             if (model.Success)
             {
                 return RedirectToAction(nameof(Index));
@@ -61,18 +69,21 @@ namespace Vjezba.Web.Controllers
             var orders = _dbContext.Orders.Include(o => o.OrderStatus).ToList();
             return View("Index", orders);
         }
+
+        [Authorize]
         [HttpPost]
-        public IActionResult Create(Order order)
+        public async Task<IActionResult> Create(Order order)
         {
             if (ModelState.IsValid)
             {
                 var user = User;
-                var result = _orderService.CreateOrder(order, user);
+                var result = await _orderService.CreateOrderAsync(order, user);
                 if (result.Success)
                 {
                     order.TotalPrice=_orderService.CalculateTotalPrice(order);
-                    _orderService.UpdateMaterialStock(order);
-                    _dbContext.SaveChanges();
+                    if (order.OrderStatusId == 1)
+                        _orderService.UpdateMaterialStock(order);
+                   await _dbContext.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
                 else
@@ -84,35 +95,39 @@ namespace Vjezba.Web.Controllers
             this.FillDropdownValuesStatus();
             return View();
         }
+
+        [Authorize]
         [HttpGet]
-        public IActionResult Edit(int Id)
+        public async Task<IActionResult> Edit(int Id)
         {
-            Order order = _dbContext.Orders.Include(e => e.OrderMaterials).Where(a => a.ID == Id).FirstOrDefault();
+            Order order =await _dbContext.Orders.Include(e => e.OrderMaterials).Where(a => a.ID == Id).FirstOrDefaultAsync();
             this.FillDropdownValues();
             this.FillDropdownValuesStatus();
             return View(order);
         }
 
+        [Authorize]
         [HttpPost]
-        public IActionResult Edit(Order order)
+        public async Task<IActionResult> Edit(Order order)
         {
-            var result = _orderService.UpdateOrder(order);
-
-            if (result.Success && ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                order.TotalPrice = _orderService.CalculateTotalPrice(order);
-                if (order.OrderStatusId == 1)
-                    _orderService.UpdateMaterialStock(order);
+                var result = await _orderService.UpdateOrderAsync(order);
+                if (result.Success)
+                {
+                    order.TotalPrice = _orderService.CalculateTotalPrice(order);
+                    if (order.OrderStatusId == 1)
+                        _orderService.UpdateMaterialStock(order);
+                    await _dbContext.SaveChangesAsync();
+                    return RedirectToAction("index");
+                }
                 else
-                    _dbContext.SaveChanges();
-                return RedirectToAction("index");
+                {
+                    ModelState.AddModelError("", result.ErrorMessage);
+                }
             }
-            else
-            {
-                ModelState.AddModelError("", result.ErrorMessage);
-            }
-
-            return View(order);
+            this.FillDropdownValues();
+            return View();
         }
 
 
@@ -124,7 +139,9 @@ namespace Vjezba.Web.Controllers
             listItem.Value = "";
             selectItems.Add(listItem);
 
-            foreach (var category in this._dbContext.Materials)
+            var materials = this._dbContext.Materials.Where(m => m.IsActive == true && !m.IsDeleted).ToList();
+
+            foreach (var category in materials)
             {
                 listItem = new SelectListItem(category.MaterialName, category.ID.ToString());
                 selectItems.Add(listItem);

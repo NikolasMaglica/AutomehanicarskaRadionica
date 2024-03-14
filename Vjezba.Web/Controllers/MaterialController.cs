@@ -20,17 +20,20 @@ namespace Vjezba.Web.Controllers
             this._materialService = materialService;
         }
 
+        [Authorize]
         [AllowAnonymous]
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var materials = _dbContext.Materials.Include(o => o.MaterialOffers).Include(m => m.OrderMaterials).ToList();
             return View(materials);
         }
+
+        [Authorize]
         [HttpPost]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var user = User;
-            var model = _materialService.DeleteMaterial(id, user);
+            var model =await _materialService.DeleteMaterialAsync(id, user);
             if (model.Success)
             {
                 return RedirectToAction(nameof(Index));
@@ -39,20 +42,24 @@ namespace Vjezba.Web.Controllers
             {
                 ModelState.AddModelError("", model.ErrorMessage);
             }
-            return RedirectToAction(nameof(Index));
-
+            var materials = _dbContext.Materials.Include(o => o.MaterialOffers).Include(m => m.OrderMaterials).ToList();
+            return View("index",materials);
         }
-        public IActionResult Create()
+
+        [Authorize]
+        public async Task<IActionResult> Create()
 		{
 			return View();
 		}
-		[HttpPost]
-        public IActionResult Create(Material model)
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Create(Material model)
         {
             if (ModelState.IsValid)
             {
                 var user = User;
-                var result = _materialService.CreateMaterial(model, user);
+                var result =await _materialService.CreateMaterialAsync(model, user);
 
                 if (result.Success)
                 {
@@ -66,25 +73,29 @@ namespace Vjezba.Web.Controllers
 
             return View();
         }
+
+        [Authorize]
         [ActionName(nameof(Edit))]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var model = this._dbContext.Materials.FirstOrDefault(c => c.ID == id);
+            var model = await this._dbContext.Materials.FirstOrDefaultAsync(c => c.ID == id);
             return View(model);
         }
+
+        [Authorize]
         [HttpPost]
         [ActionName(nameof(Edit))]
         public async Task<IActionResult> EditPost(int id)
         {
             if (ModelState.IsValid)
             {
-                var service = this._dbContext.Materials.Single(c => c.ID == id);
+                var service =await this._dbContext.Materials.SingleAsync(c => c.ID == id);
                 var ok = await this.TryUpdateModelAsync(service);
                 var user = User;
-                var result = _materialService.EditMaterial(id, user);
+                var result = await _materialService.EditMaterialAsync(id, user);
                 if (result.Success && ok)
                 {
-                    this._dbContext.SaveChanges();
+                    await this._dbContext.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
                 else

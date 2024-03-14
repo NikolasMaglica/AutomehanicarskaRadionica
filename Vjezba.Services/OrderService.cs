@@ -1,11 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 using Vjezba.DAL;
 using Vjezba.Model;
 
@@ -13,12 +8,12 @@ namespace Vjezba.Services
 {
     public interface IOrderService
     {
-        (bool Success, string ErrorMessage) CreateOrder(Order model, ClaimsPrincipal user);
+        Task<(bool Success, string ErrorMessage)> CreateOrderAsync(Order model, ClaimsPrincipal user);
 
-        (bool Success, string ErrorMessage) DeleteOrder(int id, ClaimsPrincipal user);
+        Task<(bool Success, string ErrorMessage)> DeleteOrderAsync(int id, ClaimsPrincipal user);
         decimal CalculateTotalPrice(Order order);
         void UpdateMaterialStock(Order order);
-        (bool Success, string ErrorMessage) UpdateOrder(Order order);
+        Task<(bool Success, string ErrorMessage)> UpdateOrderAsync(Order order);
 
 
     }
@@ -35,7 +30,7 @@ namespace Vjezba.Services
 
         }
 
-        public (bool Success, string ErrorMessage) DeleteOrder(int id, ClaimsPrincipal user)
+        public async Task<(bool Success, string ErrorMessage)> DeleteOrderAsync(int id, ClaimsPrincipal user)
         {
             try
             {
@@ -55,6 +50,7 @@ namespace Vjezba.Services
                 model.IsDeleted = true;
                 model.DeletedById = _userManager.GetUserName(user);
                 model.DeleteTime = DateTime.Now;
+
                 _dbContext.SaveChanges();
 
                 return (true, null); 
@@ -65,7 +61,7 @@ namespace Vjezba.Services
             }
         }
 
-        public (bool Success, string ErrorMessage) CreateOrder(Order model, ClaimsPrincipal user)
+        public async Task<(bool Success, string ErrorMessage)> CreateOrderAsync(Order model, ClaimsPrincipal user)
         {
             try
             {
@@ -73,9 +69,10 @@ namespace Vjezba.Services
                 model.CreatedById = _userManager.GetUserName(user);
                 model.CreateTime = DateTime.Now;
          
-                _dbContext.Orders.Add(model);
-               
-                _dbContext.SaveChanges();
+               await _dbContext.Orders.AddAsync(model);
+                _dbContext.Entry(model).State = EntityState.Added;
+
+               await _dbContext.SaveChangesAsync();
 
                 return (true, null); 
             }
@@ -134,20 +131,18 @@ namespace Vjezba.Services
             }
             _dbContext.SaveChanges();
         }
-        public (bool Success, string ErrorMessage) UpdateOrder(Order order)
+        public async Task<(bool Success, string ErrorMessage)> UpdateOrderAsync(Order order)
         {
             try
             {
-                List<OrderMaterial> ordDetails = _dbContext.OrderMaterials.Where(d => d.OrderId == order.ID).ToList();
-                _dbContext.OrderMaterials.RemoveRange(ordDetails);
-                _dbContext.SaveChanges();
-
+                List<OrderMaterial> eduDetails = _dbContext.OrderMaterials.Where(d => d.OrderId == order.ID).ToList();
+                _dbContext.OrderMaterials.RemoveRange(eduDetails);
+               await _dbContext.SaveChangesAsync();
                 _dbContext.Attach(order);
                 _dbContext.Entry(order).State = EntityState.Modified;
                 _dbContext.OrderMaterials.AddRange(order.OrderMaterials);
-
-                _dbContext.SaveChanges();
-                return (true, null); // Uspješno ažurirana narudžba
+               await _dbContext.SaveChangesAsync();
+                return (true, null);
             }
             catch (Exception ex)
             {

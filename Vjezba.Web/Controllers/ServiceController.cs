@@ -20,18 +20,19 @@ namespace Vjezba.Web.Controllers
             this._serviceService = serviceService;
         }
 
-        [AllowAnonymous]
-        public ActionResult Index()
+        [Authorize]
+        public async Task<IActionResult> Index()
         {
             var services = _dbContext.Services.Include(o => o.ServiceOffers).ToList();
             return View(services);
         }
 
+        [Authorize]
         [HttpPost]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var user = User;
-            var model = _serviceService.DeleteService(id, user);
+            var model =await _serviceService.DeleteServiceAsync(id, user);
             if (model.Success)
             {
                 return RedirectToAction(nameof(Index));
@@ -44,17 +45,19 @@ namespace Vjezba.Web.Controllers
 
             return View("Index", service);
         }
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             return View();
         }
+
+        [Authorize]
         [HttpPost]
-        public IActionResult Create(Service model)
+        public async Task<IActionResult> Create(Service model)
         {
             if (ModelState.IsValid)
             {
                 var user = User;
-                var result = _serviceService.CreateService(model, user);
+                var result = await _serviceService.CreateServiceAsync(model, user);
 
                 if (result.Success)
                 {
@@ -69,14 +72,15 @@ namespace Vjezba.Web.Controllers
             return View();
         }
 
-
+        [Authorize]
         [ActionName(nameof(Edit))]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var model = this._dbContext.Services.FirstOrDefault(c => c.ID == id);
+            var model = await this._dbContext.Services.FirstOrDefaultAsync(c => c.ID == id);
             return View(model);
         }
 
+        [Authorize]
         [HttpPost]
         [ActionName(nameof(Edit))]
         public async Task<IActionResult> EditPost(int id)
@@ -86,7 +90,7 @@ namespace Vjezba.Web.Controllers
                 var service = this._dbContext.Services.Single(c => c.ID == id);
                 var ok = await this.TryUpdateModelAsync(service);
                 var user = User;
-                var result = _serviceService.EditService(id, user);
+                var result =await  _serviceService.EditServiceAsync(id, user);
                 if (result.Success && ok)
                 {
                     this._dbContext.SaveChanges();
