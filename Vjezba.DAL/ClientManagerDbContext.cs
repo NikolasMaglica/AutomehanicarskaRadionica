@@ -54,7 +54,11 @@ namespace Vjezba.DAL
 
             base.OnModelCreating(modelBuilder);
 
-         
+            modelBuilder.Entity<OfferStatus>().HasData(new OfferStatus { ID = 1, OfferStatusName = "Prihvaćena" });
+            modelBuilder.Entity<OfferStatus>().HasData(new OfferStatus { ID = 2, OfferStatusName = "Odbijena" });
+            modelBuilder.Entity<OfferStatus>().HasData(new OfferStatus { ID = 3, OfferStatusName = "Na čekanju" });
+            modelBuilder.Entity<OrderStatus>().HasData(new OrderStatus { ID = 1, Name = "Pristigla" });
+            modelBuilder.Entity<OrderStatus>().HasData(new OrderStatus { ID = 2, Name = "Na čekanju" });
         }
 
     }

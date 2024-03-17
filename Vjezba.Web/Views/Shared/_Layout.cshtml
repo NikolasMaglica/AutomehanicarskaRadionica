@@ -46,8 +46,8 @@
                      <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Vozila na popravku </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li> <a class="dropdown-item" asp-area="" asp-controller="Offer" asp-action="Create">Kreiraj novo vozilo na popravku</a></li>
-                                    <li> <a class="dropdown-item" asp-area="" asp-controller="Offer" asp-action="Index">Sve narudžbe</a></li>
+                                    <li> <a class="dropdown-item" asp-area="" asp-controller="UserVehicle" asp-action="Create">Kreiraj novo vozilo na popravku</a></li>
+                                    <li> <a class="dropdown-item" asp-area="" asp-controller="UserVehicle" asp-action="Index">Sve narudžbe</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -81,6 +81,13 @@
                                 <ul class="dropdown-menu">
                                     <li> <a class="dropdown-item" asp-area="" asp-controller="Service" asp-action="Create">Kreiraj novu uslugu</a></li>
                                     <li> <a class="dropdown-item" asp-area="" asp-controller="Service" asp-action="Index">Sve usluge</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="">Klijent</a>
+                                <ul class="dropdown-menu">
+                                    <li> <a class="dropdown-item" asp-area="" asp-controller="Client" asp-action="Create">Kreiraj novog klijenta</a></li>
+                                    <li> <a class="dropdown-item" asp-area="" asp-controller="Client" asp-action="Index">Svi klijenti</a></li>
                                 </ul>
                             </li>
                         </ul>

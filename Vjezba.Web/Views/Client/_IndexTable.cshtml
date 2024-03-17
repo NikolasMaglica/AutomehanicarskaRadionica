@@ -6,7 +6,8 @@
             <th>Ime i prezime</th>
             <th>Adresa</th>
             <th>Email</th>
-            <th>Edit</th>
+            <th>Uredi</th>
+          
         </tr>
     </thead>
     <tbody>
@@ -14,12 +15,21 @@
         {
             <tr>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.ID">@item.FullName</a>
+                  @item.FullName
                 </td>
                 <td>@item.Address</td>
                 <td>@item.Email</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.ID">[edit]</a>
+              
+                <td class="action-buttons d-flex flex-row">
+
+                    <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-info ml-1">Uredi</a>
+                    <form asp-action="Delete" method="post" onsubmit="return confirm('Jeste li sigurni da želite obrisati klijenta?');">
+                        <input type="hidden" name="id" value="@item.ID" />
+                        <button type="submit" class="btn btn-danger ml-1">Izbriši</button>
+                    </form>
+
+
+
                 </td>
             </tr>
         }

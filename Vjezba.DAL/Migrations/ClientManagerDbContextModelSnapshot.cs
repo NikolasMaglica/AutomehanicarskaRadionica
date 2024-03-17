@@ -486,6 +486,23 @@ namespace Vjezba.DAL.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("OfferStatuses");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            OfferStatusName = "Prihvaćena"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            OfferStatusName = "Odbijena"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            OfferStatusName = "Na čekanju"
+                        });
                 });
 
             modelBuilder.Entity("Vjezba.Model.Order", b =>
@@ -580,6 +597,18 @@ namespace Vjezba.DAL.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("OrderStatuses");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Name = "Pristigla"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Name = "Na čekanju"
+                        });
                 });
 
             modelBuilder.Entity("Vjezba.Model.Service", b =>
